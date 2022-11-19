@@ -60,14 +60,3 @@
 | GET         | `/api/events`                                                           | List of all events          | ✅   |      |
 | GET         | `/api/events/{event_id}`                                                | Event details               | ✅   |      |
 | ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
-
-## POSIBLES NOMBRES
-
-- Dungeon Profiler
-- Dungeon Crafter
-- Dungeonize
-- DungeoniZer
-- Dungy
-- Mazmorritas
-- MazmorritAPP
--

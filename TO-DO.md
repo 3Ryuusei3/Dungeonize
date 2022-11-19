@@ -83,19 +83,20 @@
 
 ## SÁBADO 19
 
-- Modelos
-  - de Jugador - DM - Admin
-  - de personaje
-  - de eventos
+- [ 🧙🏽‍♂️ ] Modelos
+  - [ 🧙🏽‍♂️ ] de Jugador - DM - Admin
+  - [ 🧙🏽‍♂️ ] de personaje
+  - [ 🧙🏽‍♂️ ] de eventos
 - CRUD
-  1.  Cuentas
-  - de crear cuenta y registrarse
+  1.  [ 🧙🏽‍♂️ ] Cuentas
+  - [ 🧙🏽‍♂️ ] de crear cuenta y registrarse
   - de editar cuenta y eliminarla
   - Admin pueden borrar cuentas
   2. Eventos
      - DM puede crear eventos
      - Admin pueden borrar eventos
 - Layout inicial
+  - [ 🧙🏽‍♂️ ] Navbar
   - Inicio (N)
   - Registro (N)
   - Inicio de sesión (N)

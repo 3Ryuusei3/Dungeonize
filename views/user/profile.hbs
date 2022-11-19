@@ -1,0 +1,44 @@
+<div class="container">
+	<div class="d-flex justify-content-between align-items-center">
+		<h1 class="my-5">Details of {{user.username}}</h1>
+		<img src="{{user.imageUrl}}" class="profile-img img-fluid rounded-start" alt="user picture" />
+
+	</div>
+	{{#if isAdmin}}
+		<p class="pb-1"><strong class="text-danger">Role: </strong> {{user.role}}</p>
+	{{/if}}
+	<p class="pb-3"><strong class="text-danger">Email:</strong> {{user.email}}</p>
+
+	<p class="ps-4 text-justify">{{user.description}}</p>
+
+	<div class="mt-5">
+		{{#if isAdmin}}
+			<a href="/admin" class="btn btn-dark">Back to list</a>
+			<a href="/user/details/edit/{{user._id}}" class="btn btn-warning">Edit</a>
+			<form action="/user/delete/{{user._id}}" method="POST" style="display: inline">
+				<input type="submit" value="Delete" class="btn btn-danger" />
+			</form>
+		{{/if}}
+
+		{{#if isTheUser}}
+			<form action="/user/delete/account/{{user._id}}" method="POST" style="display: inline">
+				<input type="submit" value="Delete" class="btn btn-danger" />
+			</form>
+			<a href="/user/details/edit/{{user._id}}" class="btn btn-warning">Edit</a>
+		{{/if}}
+
+	</div>
+
+	{{#if isAdmin}}
+		<hr />
+		<div class="mt-3">
+			<form action="/user/{{user._id}}/promote-to-dm" method="POST" style="display: inline">
+				<input type="submit" value="Promote to DM" class="btn btn-success" />
+			</form>
+			<form action="/user/{{user._id}}/downgrade-to-player" method="POST" style="display: inline">
+				<input type="submit" value="Downgrade to Player" class="btn btn-success" />
+			</form>
+		</div>
+	{{/if}}
+
+</div>
