@@ -90,25 +90,40 @@
 - CRUD
   1.  [ 🧙🏽‍♂️ ] Cuentas
   - [ 🧙🏽‍♂️ ] de crear cuenta y registrarse
-  - de editar cuenta y eliminarla
-  - Admin pueden borrar cuentas
+  - [ 🧙🏽‍♂️ ] de editar cuenta y eliminarla
+  - [ 🧙🏽‍♂️ ] Admin pueden borrar cuentas
   2. Eventos
      - DM puede crear eventos
      - Admin pueden borrar eventos
-- Layout inicial
+- [ 🧙🏽‍♂️ ] Layout inicial
   - [ 🧙🏽‍♂️ ] Navbar
-  - Inicio (N)
-  - Registro (N)
-  - Inicio de sesión (N)
-  - Tu perfil (T)
-- Middlewares
-  - checkIfAdmin
-  - checkIfDm
+  - [ 🧙🏽‍♂️ ] Inicio (N)
+  - [ 🧙🏽‍♂️ ] Registro (N)
+  - [ 🧙🏽‍♂️ ] Inicio de sesión (N)
+  - [ 🧙🏽‍♂️ ] Tu perfil (T)
+- [ 🧙🏽‍♂️ ] Middlewares
+  - [ 🧙🏽‍♂️ ] checkIfAdmin
+  - [ 🧙🏽‍♂️ ]checkIfDm
 
 ## DOMINGO 20
 
-- Hojas de personajes
+- [ ] Hojas de personajes I
 - Investigar Navbar en base a roles
+
+## LUNES 21
+
+- [ ] Hojas de personajes II
+- [ ] CRUD eventos
+- [ ] API GM
+
+## MARTES 22
+
+- [ ] Friends
+
+## MIÉRCOLES 23
+
+- [ ] Navbar en base a roles
+- [ ] Diseño - logotipo - nombre
 
 ## DÍAS SIGUIENTES
 
@@ -117,7 +132,6 @@
   - Markers
 - Navbar en base a roles
 - Diseño - logotipo - nombre
-- Tienda
 - Paneles de control
 
 ## BONUS
@@ -128,3 +142,4 @@
 - [ ] Jugadores pueden intercambiar objetos
 - [ ] ¿Modo oscuro?
 - [ ] Responsiveness
+- [ ] Tienda

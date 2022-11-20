@@ -62,7 +62,7 @@ router.post("/user/delete/account/:user_id", isLoggedIn, (req, res) => {
 });
 
 // My profile
-router.get("/profile", (req, res, next) => {
+router.get("/user", (req, res, next) => {
 	User.findById(req.session.currentUser._id)
 		.then((user) => res.render("user/profile", { user }))
 		.catch((err) => console.log(err));

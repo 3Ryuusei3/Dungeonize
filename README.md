@@ -9,35 +9,41 @@
 
 | HTTP Method | URI path                                                                | Description                 | JSON | DONE |
 | ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
-| GET         | `/`                                                                     | Index page                  |      |      |
-| GET         | `/signup`                                                               | Signup page                 |      |      |
-| POST        | `/signup`                                                               | Signup page                 |      |      |
-| GET         | `/login`                                                                | Login page                  |      |      |
-| POST        | `/logout`                                                               | Logout                      |      |      |
+| GET         | `/`                                                                     | Index page                  |      | ✅   |
+| GET         | `/signup`                                                               | Signup page                 |      | ✅   |
+| POST        | `/signup`                                                               | Signup page                 |      | ✅   |
+| GET         | `/login`                                                                | Login page                  |      | ✅   |
+| POST        | `/login`                                                                | Login page post             |      | ✅   |
+| GET         | `/logout`                                                               | Logout                      |      | ✅   |
 | ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
-| GET         | `/player`                                                               | Edit user settings          |      |      |
-| GET         | `/player/profile/{player_id}`                                           | User profile                |      |      |
-| GET         | `/player/profile/edit/{player_id}`                                      | Edit user settings          |      |      |
-| POST        | `/player/profile/edit/{player_id}`                                      | Update user settings        |      |      |
-| GET         | `/player/characters/{player_id}`                                        | View your characters        |      |      |
-| GET         | `/player/characters/create/{player_id}`                                 | Create character            |      |      |
-| POST        | `/player/characters/create/{player_id}`                                 | Post new character          |      |      |
-| GET         | `/player/characters/details/{player_id}/{character_id}`                 | Character details           |      |      |
-| GET         | `/player/characters/details/info/{player_id}/{character_id}`            | Character info              |      |      |
-| GET         | `/player/characters/details/info/edit/{player_id}/{character_id}`       | Update character info       |      |      |
-| POST        | `/player/characters/details/info/edit/{player_id}/{character_id}`       | Edit character info         |      |      |
-| GET         | `/player/characters/details/background/{player_id}/{character_id}`      | Character background        |      |      |
-| GET         | `/player/characters/details/background/edit/{player_id}/{character_id}` | Edit character background   |      |      |
-| POST        | `/player/characters/details/background/edit/{player_id}/{character_id}` | Update character background |      |      |
-| GET         | `/player/characters/details/traits/{player_id}/{character_id}`          | Character traits            |      |      |
-| GET         | `/player/characters/details/traits/edit/{player_id}/{character_id}`     | Edit character traits       |      |      |
-| POST        | `/player/characters/details/traits/edit/{player_id}/{character_id}`     | Update character traits     |      |      |
-| GET         | `/player/characters/details/equipment/{player_id}/{character_id}`       | Character equipment         |      |      |
-| GET         | `/player/characters/details/equipment/edit/{player_id}/{character_id}`  | Edit character equipment    |      |      |
-| POST        | `/player/characters/details/equipment/edit/{player_id}/{character_id}`  | Update character equipment  |      |      |
-| GET         | `/player/characters/edit/{player_id}/{character_id}`                    | Edit character              |      |      |
-| POST        | `/player/characters/edit/{player_id}/{character_id}`                    | Update character            |      |      |
-| POST        | `/player/characters/delete/{player_id}/{character_id}`                  | Delete character            |      |      |
+| GET         | `/dashboard`                                                            | Dashboard                   |      | ✅   |
+| ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
+| GET         | `/user`                                                                 | User profile                |      | ✅   |
+| GET         | `/user/details/{user_id}`                                               | User details                |      | ✅   |
+| GET         | `/user/details/edit/{user_id}`                                          | Edit user settings          |      | ✅   |
+| POST        | `/user/details/edit/{user_id}`                                          | Update user settings        |      | ✅   |
+| POST        | `/user/delete/{user_id}`                                                | Delete user for admin       |      | ✅   |
+| POST        | `/user/delete/account/{user_id}`                                        | Delete user's account       |      | ✅   |
+| ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
+| GET         | `/characters`                                                           | View your characters        |      | ✅   |
+| GET         | `/characters/create`                                                    | Create character            |      | ✅   |
+| POST        | `/characters/create`                                                    | Post new character          |      | ✅   |
+| GET         | `/characters/edit/{character_id}`                                       | Edit character              |      | ✅   |
+| POST        | `/characters/edit/{character_id}`                                       | Update character            |      | ✅   |
+| POST        | `/characters/delete/{character_id}`                                     | Delete character            |      | ✅   |
+| GET         | `/characters/details/{character_id}`                                    | Character details           |      |      |
+| GET         | `/characters/details/info/{character_id}`                               | Character info              |      |      |
+| GET         | `/characters/details/info/edit/{character_id}`                          | Update character info       |      |      |
+| POST        | `/characters/details/info/edit/{character_id}`                          | Edit character info         |      |      |
+| GET         | `/characters/details/background/{character_id}`                         | Character background        |      |      |
+| GET         | `/characters/details/background/edit/{character_id}`                    | Edit character background   |      |      |
+| POST        | `/characters/details/background/edit/{character_id}`                    | Update character background |      |      |
+| GET         | `/characters/details/traits/{character_id}`                             | Character traits            |      |      |
+| GET         | `/characters/details/traits/edit/{character_id}`                        | Edit character traits       |      |      |
+| POST        | `/characters/details/traits/edit/{character_id}`                        | Update character traits     |      |      |
+| GET         | `/characters/details/equipment/{character_id}`                          | Character equipment         |      |      |
+| GET         | `/characters/details/equipment/edit/{character_id}`                     | Edit character equipment    |      |      |
+| POST        | `/characters/details/equipment/edit/{character_id}`                     | Update character equipment  |      |      |
 | ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
 | GET         | `/event`                                                                | Event list page             |      |      |
 | GET         | `/event/create`                                                         | Create event                |      |      |
@@ -48,14 +54,14 @@
 | POST        | `/event/delete/{event_id}`                                              | Delete event                |      |      |
 | ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
 | GET         | `/friends/{player_id}`                                                  | Player friends page         |      |      |
-| GET         | `/player/profile/{player_id}`                                           | Friend profile              |      |      |
+| GET         | `/user/details/{player_id}`                                             | Friend profile              |      |      |
 | GET         | `/friends/friend-requests/{player_id}`                                  | Friend requests page        |      |      |
 | ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
 | GET         | `/dm-panel`                                                             | DM Panel                    |      |      |
 | GET         | `/admin-panel`                                                          | Admin Panel                 |      |      |
 | ----------- | ----------------------------------------------------------------------- | --------------------------- | ---- | ---- |
 | GET         | `/api`                                                                  | API                         | ✅   |      |
-| GET         | `/api/users`                                                            | List of all users           | ✅   |      |
+| GET         | `/api/users`                                                            | List of all users           | ✅   | ✅   |
 | GET         | `/api/users/{player_id}`                                                | User details                | ✅   |      |
 | GET         | `/api/events`                                                           | List of all events          | ✅   |      |
 | GET         | `/api/events/{event_id}`                                                | Event details               | ✅   |      |

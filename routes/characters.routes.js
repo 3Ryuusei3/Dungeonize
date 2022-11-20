@@ -24,7 +24,7 @@ router.get("/characters", (req, res, next) => {
 		.catch((err) => console.log(err));
 });
 
-// create characters
+// Create characters
 router.get("/characters/create", (req, res, next) => {
 	let allClasses = [];
 	let allRaces = [];
@@ -42,18 +42,12 @@ router.get("/characters/create", (req, res, next) => {
 			data.results.forEach((elm) => {
 				allRaces.push(elm);
 			});
-			console.log(data);
+			// console.log(data);
 			return User.findById(req.session.currentUser._id);
 		})
 		.then(() => {
-			res.render("character/create", { allClasses });
+			res.render("character/create", { allClasses, allRaces });
 		});
-
-	/* User.findById(req.session.currentUser._id)
-		.then(() => {
-			res.render("character/create");
-		})
-		.catch((err) => console.log(err)); */
 });
 
 router.post("/characters/create", (req, res, next) => {
@@ -67,36 +61,36 @@ router.post("/characters/create", (req, res, next) => {
 		.catch((err) => console.log(err));
 });
 
-// // Edit User
-// router.get("/user/details/edit/:user_id", isLoggedIn, (req, res, next) => {
-// 	const { user_id } = req.params;
+// Edit Character
+router.get("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
+	const { character_id } = req.params;
 
-// 	User.findById(user_id)
-// 		.then((user) => {
-// 			res.render("user/edit", user);
-// 		})
-// 		.catch((err) => console.log(err));
-// });
+	Character.findById(character_id)
+		.then((character) => {
+			res.render("character/edit", character);
+		})
+		.catch((err) => console.log(err));
+});
 
-// router.post("/user/details/edit/:user_id", isLoggedIn, (req, res, next) => {
-// 	const { user_id } = req.params;
-// 	const { email, username, password, description } = req.body;
+router.post("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
+	const { character_id } = req.params;
+	const { charactername } = req.body;
 
-// 	User.findByIdAndUpdate(user_id, { email, username, password, description })
-// 		.then(() => {
-// 			res.redirect(`/user/details/${user_id}`);
-// 		})
-// 		.catch((err) => console.log(err));
-// });
+	Character.findByIdAndUpdate(character_id, { charactername })
+		.then(() => {
+			res.redirect(`/characters`);
+		})
+		.catch((err) => console.log(err));
+});
 
-// // Delete User
-// router.post("/user/delete/:user_id", isLoggedIn, (req, res) => {
-// 	const { user_id } = req.params;
+// Delete Character
+router.post("/characters/delete/:character_id", isLoggedIn, (req, res) => {
+	const { character_id } = req.params;
 
-// 	User.findByIdAndDelete(user_id)
-// 		.then(() => res.redirect("/admin"))
-// 		.catch((err) => console.log(err));
-// });
+	Character.findByIdAndDelete(character_id)
+		.then(() => res.redirect("/characters"))
+		.catch((err) => console.log(err));
+});
 
 // // Delete user's account
 // router.post("/user/delete/account/:user_id", isLoggedIn, (req, res) => {
