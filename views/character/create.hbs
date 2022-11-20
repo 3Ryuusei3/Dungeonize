@@ -1,0 +1,56 @@
+<div class="container">
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-6">
+
+			<h1 class="my-5">New character</h1>
+
+			<form action="/characters/create" method="POST">
+
+				<div class="mb-3 row">
+					<div class="col">
+						<label for="charactername" class="form-label">Character name</label>
+						<input
+							type="text"
+							class="form-control"
+							id="charactername"
+							name="charactername"
+							placeholder="Thunderer the sorcerer"
+						/>
+						<div class="form-text">Required.</div>
+					</div>
+
+				</div>
+				<div class="col">
+					<label for="classes" class="form-label">Class</label>
+					<select id="classes" class="form-select" aria-label="Default select example" name="classes">
+						<option selected>Select a class</option>
+						{{#each allClasses}}
+							<option value="{{name}}">{{name}}</option>
+						{{/each}}
+					</select>
+				</div>
+
+				<div class="col">
+					<label for="race" class="form-label">Race</label>
+					<select id="race" class="form-select" aria-label="Default select example" name="race">
+						<option selected>Select a race</option>
+						{{#each allRaces}}
+							<option value="{{name}}">{{name}}</option>
+						{{/each}}
+					</select>
+				</div>
+				{{! <div class="mb-3">
+					<label for="imageInput" class="form-label">Imagen</label>
+					<input type="url" class="form-control" id="imageInput" name="imageUrl" />
+					<div class="form-text">Introduce la URL a la imagen que desees de perfil.</div>
+				</div> }}
+				<div class="mt-5 d-grid gap-2">
+					<button type="submit" class="btn btn-dark block">Create new character</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>

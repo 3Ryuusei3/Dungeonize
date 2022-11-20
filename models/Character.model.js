@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
+//const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
-const characterSchema = new Schema(
+const characterSchema = new mongoose.Schema(
 	{
 		charactername: {
 			type: String,
@@ -9,26 +9,42 @@ const characterSchema = new Schema(
 			required: true,
 		},
 		user: {
-			type: mongoose.Types.ObjectId,
-			ref: "User",
+			type: mongoose.Schema.Types.ObjectId,
+			ref: "user",
 		},
-		class: {
+		classes: {
 			type: String,
 			required: true,
-			enum: ["wizard", "cleric", "druid", "sorcerer", "barbarian", "fighter"],
+			/* enum: ["wizard", "cleric", "druid", "sorcerer", "barbarian", "fighter"], */
 		},
-		races: {
+		race: {
 			type: String,
 			required: true,
-			enum: ["elf", "gnome", "human", "halfing", "dwarf", "tiefling"],
+			/* enum: ["elf", "gnome", "human", "halfing", "dwarf", "tiefling"], */
+		},
+		imageUrl: {
+			type: String,
+			default: "https://i.pinimg.com/originals/e2/d4/52/e2d4524dde801da2ee190b67b34f2a8b.png",
 		},
 	},
 	{
-		// this second object adds extra properties: `createdAt` and `updatedAt`
 		timestamps: true,
 	}
 );
 
-const character = model("character", characterSchema);
+module.exports = mongoose.model("Character", characterSchema);
 
-module.exports = character;
+/* 
+
+{
+  "charactername": "pepito",
+  "user":
+	{
+		"$oid": "6378c38652aa0f31a8939c8b"
+	},
+  "class": "wizard",
+  "race": "human",
+  "imageUrl":  "https://i.pinimg.com/originals/e2/d4/52/e2d4524dde801da2ee190b67b34f2a8b.png"  
+}
+
+*/

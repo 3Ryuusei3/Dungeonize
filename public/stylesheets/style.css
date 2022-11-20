@@ -23,11 +23,9 @@ h3 {
 .hero {
 	/* background-image: url(./../images/city.jpg); */
 	background-size: contain;
-	min-height: 800px;
 	height: 95vh;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-color: brown;
 	color: black;
 	display: flex;
 	justify-content: center;
@@ -73,6 +71,28 @@ h3 {
 	margin-left: auto;
 	margin-right: auto;
 	z-index: 1;
+}
+
+/* Characters */
+
+.class {
+	border: solid 1px rgb(123, 230, 252);
+	color: rgb(123, 230, 252);
+	max-width: max-content;
+	align-self: flex-end;
+	padding: 5px 10px;
+	border-radius: 8px;
+	display: inline-block;
+}
+
+.race {
+	border: solid 1px rgb(252, 123, 123);
+	color: rgb(252, 123, 123);
+	max-width: max-content;
+	align-self: flex-end;
+	padding: 5px 10px;
+	border-radius: 8px;
+	display: inline-block;
 }
 
 /* Error message */

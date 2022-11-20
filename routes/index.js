@@ -13,9 +13,17 @@ module.exports = (app) => {
 	const adminRoutes = require("./admin.routes");
 	app.use("/", adminRoutes);
 
+	// Characters Routes
+	const charactersRoutes = require("./characters.routes");
+	app.use("/", charactersRoutes);
+
 	// User Routes
 	const userRoutes = require("./user.routes");
 	app.use("/", userRoutes);
+
+	// API Routes
+	const apiRoutes = require("./api.routes");
+	app.use("/api", apiRoutes);
 
 	// // Events Routes
 	// const eventsRoutes = require("./events.routes");
