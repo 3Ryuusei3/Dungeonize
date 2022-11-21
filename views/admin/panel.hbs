@@ -2,28 +2,26 @@
 	<h1 class="my-5">All users</h1>
 
 	{{#each user}}
-		<div class="card mb-3 py-3">
-			<div class="row g-0 justify-content-around align-items-center">
-				<div class="col-md-2 d-flex justify-content-center align-items-center">
-					<img src="{{imageUrl}}" class="profile-img img-fluid rounded-start" alt="profile picture" />
-				</div>
-				<div class="col-md-5">
-					<div class="card-body">
-						<h5 class="card-title"><a href="/user/details/{{_id}}">{{username}}</a></h5>
-						<p class="card-text"><small class="text-muted">Role:{{role}}</small></p>
-					</div>
-				</div>
-				<a
-					href="/user/details/edit/{{_id}}"
-					class="col-md-2 btn btn-warning px-4"
-					style="max-width: max-content;"
-				>Edit</a>
-				<form action="/user/delete/{{_id}}" method="POST" class="d-flex m-0" style="max-width: max-content;">
-					<input type="submit" value="Delete" class="btn btn-danger" />
-				</form>
+	<div class="card mb-3 py-3">
+		<div class="row g-0 justify-content-around align-items-center">
+			<div class="col-md-2 d-flex justify-content-center align-items-center">
+				<img src="{{imageUrl}}" class="profile-img img-fluid rounded-start" alt="profile picture" />
 			</div>
+			<div class="col-md-5">
+				<div class="card-body">
+					<h5 class="card-title"><a href="/user/details/{{_id}}">{{username}}</a></h5>
+					<p class="card-text"><small class="text-muted">Role:{{role}}</small></p>
+				</div>
+			</div>
+			<a href="/user/details/edit/{{_id}}" class="col-md-2 btn btn-warning px-4"
+				style="max-width: max-content;">Edit</a>
+			<form action="/user/delete/{{_id}}" method="POST" class="d-flex m-0" style="max-width: max-content;">
+				<input type="submit" value="Delete" class="btn btn-danger" />
+			</form>
 
 		</div>
+
+	</div>
 	{{/each}}
 
 	<a href="/" class="btn btn-dark mt-4">Home</a>
