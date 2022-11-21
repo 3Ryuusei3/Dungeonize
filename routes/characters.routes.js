@@ -9,14 +9,14 @@ const User = require("./../models/User.model");
 const Character = require("./../models/Character.model");
 
 //Character list
-router.get("/characters", (req, res, next) => {
+router.get("/characters", isLoggedIn, (req, res, next) => {
 	let user;
 
 	User.findById(req.session.currentUser._id)
 		.populate("characters")
 		.then((theUser) => {
 			user = theUser;
-			return Character.find().select({ charactername: 1, classes: 1, race: 1 });
+			return Character.find({ user: req.session.currentUser._id }).select({ charactername: 1, classes: 1, race: 1 });
 		})
 		.then((characters) => {
 			res.render("character/list", { user, characters });
@@ -25,7 +25,7 @@ router.get("/characters", (req, res, next) => {
 });
 
 // Create characters
-router.get("/characters/create", (req, res, next) => {
+router.get("/characters/create", isLoggedIn, (req, res, next) => {
 	let allClasses = [];
 	let allRaces = [];
 
@@ -50,7 +50,7 @@ router.get("/characters/create", (req, res, next) => {
 		});
 });
 
-router.post("/characters/create", (req, res, next) => {
+router.post("/characters/create", isLoggedIn, (req, res, next) => {
 	let userId = req.session.currentUser._id;
 	const { charactername, classes, race, imageUrl, user } = req.body;
 
@@ -91,23 +91,5 @@ router.post("/characters/delete/:character_id", isLoggedIn, (req, res) => {
 		.then(() => res.redirect("/characters"))
 		.catch((err) => console.log(err));
 });
-
-// // Delete user's account
-// router.post("/user/delete/account/:user_id", isLoggedIn, (req, res) => {
-// 	const { user_id } = req.params;
-
-// 	User.findByIdAndDelete(user_id)
-// 		.then(() => {
-// 			req.session.destroy(() => res.redirect("/"));
-// 		})
-// 		.catch((err) => console.log(err));
-// });
-
-// // My profile
-// router.get("/profile", (req, res, next) => {
-// 	User.findById(req.session.currentUser._id)
-// 		.then((user) => res.render("user/profile", { user }))
-// 		.catch((err) => console.log(err));
-// });
 
 module.exports = router;

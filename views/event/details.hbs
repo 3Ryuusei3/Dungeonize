@@ -1,0 +1,38 @@
+<div class="container mb-5">
+	<div class="row d-flex justify-content-center">
+		<div class="col-md-6">
+			<div class="d-flex justify-content-between align-items-center">
+				<h1 class="mt-5 mb-3 text-center fw-bolder">{{event.title}}</h1>
+			</div>
+			<p class="pb-2"><strong class="text-danger">Location: </strong>Madrid</p>
+
+			<p class="pb-2 ps-4 text-justify"><em>{{event.description}}</em></p>
+
+			<p class="pb-2"><strong class="text-danger">Date: </strong>{{event.date}}</p>
+
+			<p class="pb-2"><strong class="text-danger">Dungeon Master: </strong>{{event.user.username}}</p>
+
+			{{! Pendiente de popular los jugadores }}
+			<p class="pb-2"><strong class="text-danger">List of participants: {{event.characters}}</strong></p>
+
+			<figure id="eventMap"></figure>
+
+			<div class="mt-4">
+				{{#if isDM}}
+					<a href="/admin" class="btn btn-dark">Back to list</a>
+					<a href="/user/details/edit/{{user._id}}" class="btn btn-warning">Edit</a>
+					<form action="/user/delete/{{user._id}}" method="POST" style="display: inline">
+						<input type="submit" value="Delete" class="btn btn-danger" />
+					</form>
+				{{/if}}
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/js/eventmap.js"></script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBx2NpiwR2E5D-tDhDiXw1CUv71iwX7N3Q&callback=init"
+></script>

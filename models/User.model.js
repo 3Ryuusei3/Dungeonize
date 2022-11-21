@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema(
 		characters: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "character",
+				ref: "Character",
 			},
 		],
 	},

@@ -1,0 +1,53 @@
+<div class="container">
+
+	<div class="row justify-content-center">
+
+		<div class="col-md-6">
+
+			<h1 class="my-5">New event</h1>
+
+			<form action="/events/create" method="POST">
+
+				<div class="mb-3 row">
+					<div class="col">
+						<label for="title" class="form-label">Event title</label>
+						<input type="text" class="form-control" id="title" name="title" placeholder="Into the woods" />
+						<div class="form-text">Required.</div>
+					</div>
+
+				</div>
+				<div class="mb-3">
+					<label for="description" class="form-label">Event description</label>
+					<textarea
+						placeholder="The story of..."
+						class="form-control"
+						id="description"
+						name="description"
+						rows="5"
+					>{{description}}</textarea>
+				</div>
+				<div class="mb-3">
+					<label for="date" class="form-label">Date</label>
+					<input type="date" class="form-control" id="date" name="date" value="{{startDate}}" />
+				</div>
+				<div class="mb-3 row">
+					{{! <label for="lat" class="form-label">Location</label> }}
+					<div class="col">
+						<label for="lat" class="form-label">Latitude</label>
+						<input type="text" class="form-control" id="lat" name="lat" />
+						<div class="form-text">Required.</div>
+					</div>
+					<div class="col">
+						<label for="lng" class="form-label">Longitude</label>
+						<input type="text" class="form-control" id="lng" name="lng" />
+						<div class="form-text">Required.</div>
+					</div>
+				</div>
+				<div class="mt-5 d-grid gap-2">
+					<button type="submit" class="btn btn-dark block">Create new event</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>
