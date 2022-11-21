@@ -4,6 +4,13 @@ const router = express.Router();
 
 const User = require("../models/User.model");
 
+// My profile
+router.get("/user", (req, res, next) => {
+	User.findById(req.session.currentUser._id)
+		.then((user) => res.render("user/profile", { user }))
+		.catch((err) => console.log(err));
+});
+
 // User details
 router.get("/user/details/:user_id", isLoggedIn, (req, res, next) => {
 	const { user_id } = req.params;
@@ -58,13 +65,6 @@ router.post("/user/delete/account/:user_id", isLoggedIn, (req, res) => {
 		.then(() => {
 			req.session.destroy(() => res.redirect("/"));
 		})
-		.catch((err) => console.log(err));
-});
-
-// My profile
-router.get("/user", (req, res, next) => {
-	User.findById(req.session.currentUser._id)
-		.then((user) => res.render("user/profile", { user }))
 		.catch((err) => console.log(err));
 });
 

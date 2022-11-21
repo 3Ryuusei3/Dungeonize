@@ -24,23 +24,25 @@
 						id="description"
 						name="description"
 						rows="5"
-					>{{description}}</textarea>
+					></textarea>
 				</div>
 				<div class="mb-3">
 					<label for="date" class="form-label">Date</label>
-					<input type="date" class="form-control" id="date" name="date" value="{{startDate}}" />
+					<input type="date" class="form-control" id="date" name="date" />
+				</div>
+				<div class="mb-3">
+					<label for="place" class="form-label">Place</label>
+					<input type="text" class="form-control" id="place" name="place" />
 				</div>
 				<div class="mb-3 row">
 					{{! <label for="lat" class="form-label">Location</label> }}
 					<div class="col">
 						<label for="lat" class="form-label">Latitude</label>
 						<input type="text" class="form-control" id="lat" name="lat" />
-						<div class="form-text">Required.</div>
 					</div>
 					<div class="col">
 						<label for="lng" class="form-label">Longitude</label>
 						<input type="text" class="form-control" id="lng" name="lng" />
-						<div class="form-text">Required.</div>
 					</div>
 				</div>
 				<div class="mt-5 d-grid gap-2">

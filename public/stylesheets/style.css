@@ -100,7 +100,8 @@ h3 {
 	display: inline-block;
 }
 
-.race {
+.race,
+.place {
 	border: solid 1px rgb(252, 123, 123);
 	color: rgb(252, 123, 123);
 	max-width: max-content;
@@ -108,6 +109,10 @@ h3 {
 	padding: 5px 10px;
 	border-radius: 8px;
 	display: inline-block;
+}
+
+.place {
+	align-self: flex-start;
 }
 
 /* Events */

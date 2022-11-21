@@ -26,14 +26,14 @@ router.get("/events/create", (req, res, next) => {
 });
 
 router.post("/events/create", (req, res, next) => {
-	const { title, description, lat, lng, date, user } = req.body;
+	const { title, description, lat, lng, date, user, post, place } = req.body;
 
 	const location = {
 		type: "Point",
 		coordinates: [lat, lng],
 	};
 
-	Event.create({ title, description, location, date, user: req.session.currentUser._id })
+	Event.create({ title, description, location, date, user: req.session.currentUser._id, place })
 		.then(() => {
 			res.redirect("/events");
 		})
@@ -54,28 +54,28 @@ router.get("/events/details/:events_id", (req, res, next) => {
 		});
 });
 
-/* // Edit Character
-router.get("/events/edit/:character_id", isLoggedIn, (req, res, next) => {
-	const { character_id } = req.params;
+// Edit Character
+router.get("/events/edit/:events_id", isLoggedIn, (req, res, next) => {
+	const { events_id } = req.params;
 
-	Character.findById(character_id)
-		.then((character) => {
-			res.render("character/edit", character);
+	Event.findById(events_id)
+		.then((event) => {
+			res.render("event/edit", event);
 		})
 		.catch((err) => console.log(err));
 });
 
-router.post("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
-	const { character_id } = req.params;
-	const { charactername } = req.body;
+router.post("/events/edit/:events_id", isLoggedIn, (req, res, next) => {
+	const { events_id } = req.params;
+	const { title, description, lat, lng, date, post, place } = req.body;
 
-	Character.findByIdAndUpdate(character_id, { charactername })
+	Event.findByIdAndUpdate(events_id, { title, description, lat, lng, date, post, place })
 		.then(() => {
-			res.redirect(`/characters`);
+			res.redirect(`/events`);
 		})
 		.catch((err) => console.log(err));
 });
-*/
+
 // Delete Character
 router.post("/events/delete/:events_id", isLoggedIn, (req, res) => {
 	const { events_id } = req.params;

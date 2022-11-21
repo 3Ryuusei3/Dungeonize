@@ -3,10 +3,9 @@
 	<div class="row d-flex justify-content-center gap-4">
 		{{#each events}}
 			<div class="card justify-content-between col-lg-3 col-md-4 px-3 gap-2" style="width: 24rem;">
-				<div>
 					<h2 class="card-title my-3 fw-bolder"><a href="/events/details/{{_id}}">{{title}}</a></h2>
 					{{!-- <p><em>{{plot}}</em></p> --}}
-					<p class="race"><strong>Madrid</strong></p>
+					<p class="place"><strong>{{place}}</strong></p>
 					<p class="text-subtitle fs ps-3"><em><small>{{description}}</small></em></p>
 					<p class="text-start"><strong>{{date}}</strong></p>
 					<div class="mb-3">
@@ -17,7 +16,6 @@
 						</form>
 					{{/if}}
                     </div>
-				</div>
 
 			</div>
 		{{/each}}
