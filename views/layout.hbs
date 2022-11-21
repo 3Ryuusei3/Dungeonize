@@ -43,15 +43,21 @@
 								data-bs-toggle="dropdown"
 								aria-expanded="false"
 							>
-								Auth
+								Session
 							</a>
 							<ul class="dropdown-menu">
+								{{#if guest}}
 								<li><a class="dropdown-item" href="/signup">Signup</a></li>
 								<li><a class="dropdown-item" href="/login">Login</a></li>
+								{{/if}}
+								{{#unless guest}}
 								<li><a class="dropdown-item" href="/user">Profile</a></li>
 								<li><a class="dropdown-item text-danger" href="/logout">Logout</a></li>
+								{{/unless}}
 							</ul>
 						</li>
+						
+						{{#unless guest}}
 						<li class="nav-item">
 							<a class="nav-link" href="/dashboard">Dashboard</a>
 						</li>
@@ -61,18 +67,19 @@
 						<li class="nav-item">
 							<a class="nav-link" href="/events">Events</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/friend">Friends</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/friend-requests">Friend requests</a>
-						</li>
-						{{! <li class="nav-item">
-							<a class="nav-link" href="/dm">DM</a>
-						</li> }}
+						{{/unless}}
+						
+						{{#if admin}}
 						<li class="nav-item">
 							<a class="nav-link" href="/admin">Admin</a>
 						</li>
+						{{/if}}
+						{{#if username}}
+						<li class="nav-item">
+          					<a class="nav-link disabled">{{username}}</a>
+        				</li>
+						{{/if}}
+							
 
 					</ul>
 				</div>
@@ -90,3 +97,14 @@
 	</body>
 
 </html>
+
+
+{{!-- <li class="nav-item">
+	<a class="nav-link" href="/friend">Friends</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/friend-requests">Friend requests</a>
+</li> --}}
+{{! <li class="nav-item">
+	<a class="nav-link" href="/dm">DM</a>
+</li> }}

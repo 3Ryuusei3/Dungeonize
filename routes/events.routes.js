@@ -8,10 +8,19 @@ const Event = require("./../models/Event.model");
 router.get("/events", (req, res, next) => {
 	Event.find()
 		.then((events) => {
+			let formattedDates = [];
+			events.forEach(elm => {
+				//formattedDates.push({"date": elm.date.toString().split("T")[0].split("01:00")[0]})
+				formattedDates[elm] = elm.date.toString().split("T")[0].split("01:00")[0]
+				 
+			});
+			console.log(formattedDates)
 			res.render("event/list", {
 				events,
-				isDM: req.session.currentUser.role === "DM",
+					 formattedDates,
+					 isDM: req.session.currentUser.role === "DM",
 			});
+
 		})
 		.catch((err) => console.log(err));
 });
@@ -27,6 +36,7 @@ router.get("/events/create", (req, res, next) => {
 
 router.post("/events/create", (req, res, next) => {
 	const { title, description, lat, lng, date, user, post, place } = req.body;
+	
 
 	const location = {
 		type: "Point",
