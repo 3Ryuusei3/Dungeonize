@@ -6,7 +6,9 @@
 					<h2 class="card-title my-3 fw-bolder"><a href="/events/details/{{_id}}">{{title}}</a></h2>
 					<p class="place"><strong>{{place}}</strong></p>
 					<p class="text-subtitle fs ps-3"><em><small>{{description}}</small></em></p>
-					<p class="text-start"><strong>{{#each ../formattedDates}}{{date}}{{/each}}</strong></p>
+					
+					{{!-- <p class="text-start"><strong>{{#each ../formattedDates}}{{date}}{{/each}}</strong></p> --}}
+					<p class="text-start"><strong>{{formattedDates}}</strong></p>
 					<div class="mb-3">
                     {{#if ../isDM}}
 						<a class="justify-self-end btn btn-secondary" href="/events/edit/{{_id}}">Edit event</a>

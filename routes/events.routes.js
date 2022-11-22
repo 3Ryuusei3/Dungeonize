@@ -8,17 +8,15 @@ const Event = require("./../models/Event.model");
 router.get("/events", (req, res, next) => {
 	Event.find()
 		.then((events) => {
-			let formattedDates = [];
+
 			events.forEach(elm => {
-				//formattedDates.push({"date": elm.date.toString().split("T")[0].split("01:00")[0]})
-				formattedDates[elm] = elm.date.toString().split("T")[0].split("01:00")[0]
-				 
+				elm.formattedDates = elm.date.toString().split("T")[0].split("01:00")[0]
 			});
-			console.log(formattedDates)
+
 			res.render("event/list", {
 				events,
-					 formattedDates,
-					 isDM: req.session.currentUser.role === "DM",
+				/* formattedDates, */
+				isDM: req.session.currentUser.role === "DM",
 			});
 
 		})
