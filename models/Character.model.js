@@ -24,6 +24,43 @@ const characterSchema = new mongoose.Schema(
 			type: String,
 			default: "https://i.pinimg.com/originals/e2/d4/52/e2d4524dde801da2ee190b67b34f2a8b.png",
 		},
+		classInfo: {
+			health: {
+				type: Number
+			},
+			skills: {
+				type: String
+			},
+			equipment: {
+				type: String
+			},
+			traits: {
+				type: String
+			}
+		},
+		raceInfo: {
+			speed: {
+				type: Number
+			},
+			alignment: {
+				type: String
+			},
+			age: {
+				type: String
+			},
+			ageDescription: {
+				type: String
+			},
+			sizeDescription: {
+				type: String
+			},
+			languages: {
+				type: String
+			},
+			traits: {
+				type: String
+			}
+		},
 		background: {
 			personality: {
 				type: String,

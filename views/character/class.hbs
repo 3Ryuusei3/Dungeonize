@@ -1,0 +1,49 @@
+<div class="container">
+
+	<div class="row justify-content-center">
+
+
+		<div class="col-md-6">
+			<h1 class="mt-5 mb-3">Customize your class</h1>
+
+			<form action="/characters/create/class/{{character_id}}" method="POST">
+            <div class="text mb-4 border-start border-danger border-4 ps-3 py-3 mb-3 bg-danger bg-opacity-10">Class is the primary definition of what your character can do. It’s more than a profession; it’s your character’s calling. Class shapes the way you think about the world and interact with it and your relationship with other people and powers in the multiverse</div>
+
+				<div class="mb-3 col">
+					<label for="health" class="form-label">Health points</label>
+                    <div class="form-text mb-3"><em>Your character’s hit points define how tough your character is in combat and other dangerous situations. </em></div>
+					<input type="text" class="form-control" id="health" name="health" value="{{health}}"/>
+				</div>
+                <div class="mb-3 col">
+					<label for="skills" class="form-label">Skill</label>
+                    <div class="form-text mb-3"><em>A skill represents a specific knowledge, and an individual’s level of proficiency in a skill demonstrates a focus on that aspect.</em></div>
+					<select id="skills" class="form-select mb-4" aria-label="Default select example" name="skills">
+						<option selected>Select your prefered skill</option>
+						{{#each allSkills}}
+                            <option value="{{this}}">{{this}}</option>
+						{{/each}}
+					</select>
+				</div>
+                 <div class="mb-3 col">
+					<label for="equipment" class="form-label">Equipment</label>
+                    <div class="form-text mb-3"><em>Your class and background determine your character’s starting equipment, including weapons, armor, and other adventuring gear.</em></div>
+                    <input type="text" class="form-control" id="equipment" name="equipment" value="{{#each equipment}}{{name}}. {{/each}}" />
+				</div>
+                 <div class="mb-3 col">
+					<label for="traits" class="form-label">Trait</label>
+                    <div class="form-text mb-3"><em>Personality traits might describe the things your character likes, his or her past accomplishments, things your character dislikes or fears, your character's self-attitude or mannerisms, or the influence of his or her ability scores.</em></div>
+					<select id="traits" class="form-select mb-4" aria-label="Default select example" name="traits">
+						<option selected>Select your prefered trait</option>
+						{{#each allTraits}}
+							<option value="{{name}}">{{name}}</option>
+						{{/each}}
+					</select>
+				</div>
+				<div class="my-5 d-grid gap-2">
+					<button type="submit" class="btn btn-dark block">Next step</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>

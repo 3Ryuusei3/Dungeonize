@@ -56,8 +56,8 @@ router.post("/characters/create", isLoggedIn, (req, res, next) => {
 	const { charactername, classes, race, imageUrl, user } = req.body;
 
 	Character.create({ charactername, classes, race, imageUrl, user: userId })
-		.then(() => {
-			res.redirect("/characters");
+		.then((character) => {
+			res.redirect(`/characters/create/class/${character._id}`);
 		})
 		.catch((err) => console.log(err));
 });
@@ -93,40 +93,120 @@ router.post("/characters/delete/:character_id", isLoggedIn, (req, res) => {
 		.catch((err) => console.log(err))
 });
 
+// Create class
+router.get("/characters/create/class/:character_id", isLoggedIn, (req, res, next) => {
+	const { character_id } = req.params
+	let characterClass;
+	let allTraits;
+
+	Character.findById(character_id)
+		.then((character) => {  
+			characterClass = character.classes.toLowerCase();
+			return characterService.getClassTraits()
+		})
+		.then((data) => {		
+			allTraits = data.results.map((elm) => elm)
+			return characterService.getClassInfo(characterClass);      ////promise all
+		})
+		.then((data) => {
+			const health = data.hit_die
+			const allSkills = data.proficiency_choices[0].from.options.map((elem2) => elem2.item.name);
+			const equipment = data.starting_equipment.map((elm) => elm.equipment)
+			
+			res.render("character/class", { allTraits, character_id, health, allSkills, equipment });
+		})
+		.catch((err) => console.log(err))
+});
+
+
+router.post("/characters/create/class/:character_id", isLoggedIn, (req, res, next) => {
+	const { health, skills, equipment, traits } = req.body;
+	const { character_id } = req.params
+
+	const classInfo = {
+		health: health,
+		skills: skills,
+		equipment: equipment,
+		traits: traits,
+	};
+
+	Character
+		.findByIdAndUpdate(character_id, { classInfo })
+		.then(() => {
+			res.redirect(`/characters/create/race/${character_id}`);
+		})
+		.catch((err) => console.log(err));
+});
+
+
+// Create races
+router.get("/characters/create/race/:character_id", isLoggedIn, (req, res, next) => {
+	const { character_id } = req.params
+	let characterRace;
+
+	Character.findById(character_id)
+		.then((character) => {
+			characterRace = character.race.toLowerCase()
+			return characterService.getRacesInfo(characterRace);      
+		})
+		.then((data) => {
+			const speed = data.speed
+			const allAlignments = ["Lawful good", "Neutral good", "Chaotic good", "Lawful neutral", "True neutral", "Chaotic neutral", "Lawful evil", "Neutral evil", "Chaotic evil"]
+			const ageDescription = data.age
+			const sizeDescription = data.size_description
+			const allLanguages = data.languages.map((elm) => elm.name)
+			const allTraits = data.traits.map((elm) => elm.name)
+
+			res.render("character/race", { speed, allAlignments, ageDescription, sizeDescription, allLanguages, allTraits, character_id });
+		})
+		.catch((err) => console.log(err))
+});
+
+
+router.post("/characters/create/race/:character_id", isLoggedIn, (req, res, next) => {
+	const { speed, alignment, age, ageDescription, sizeDescription, languages, traits } = req.body;
+	const { character_id } = req.params
+
+	const raceInfo = {
+		speed: speed,
+		alignment: alignment,
+		age: age,
+		ageDescription: ageDescription,
+		sizeDescription: sizeDescription,
+		languages: languages,
+		traits: traits
+	};
+
+	Character
+		.findByIdAndUpdate(character_id, { raceInfo })
+		.then(() => {
+			res.redirect(`/characters/create/background/${character_id}`);
+		})
+		.catch((err) => console.log(err));
+});
+
+
+
 // Create background
-router.get("/characters/create/background", isLoggedIn, (req, res, next) => {
-
-	let allPersonalities = [];
-	let allIdeals = [];
-	let allBonds = [];
-	let allFlaws = [];
-
+router.get("/characters/create/background/:character_id", isLoggedIn, (req, res, next) => {
+	const { character_id } = req.params
+	
 	characterService
 		.getBackground()
 		.then((data) => {
-			// allPersonalities.map(elm => elm.data.personality_traits.from.options)
-			data.personality_traits.from.options.forEach((elm) => {
-				allPersonalities.push(elm)
-			})
-			data.ideals.from.options.forEach((elm) => {
-				allIdeals.push(elm)
-			})
-			data.bonds.from.options.forEach((elm) => {
-				allBonds.push(elm)
-			})
-			data.flaws.from.options.forEach((elm) => {
-				allFlaws.push(elm)
-			})
-			res.render("character/background", { allPersonalities, allIdeals, allBonds, allFlaws });
+			const allPersonalities = data.personality_traits.from.options.map((elm) => elm)
+			const allIdeals = data.ideals.from.options.map((elm) => elm)
+			const allBonds = data.bonds.from.options.map((elm) => elm)
+			const allFlaws = data.flaws.from.options.map((elm) => elm)
+			res.render("character/background", { character_id, allPersonalities, allIdeals, allBonds, allFlaws });
 		})
 		.catch ((err) => console.log(err))
 });
 
 
-router.post("/characters/create/background", isLoggedIn, (req, res, next) => {
-
+router.post("/characters/create/background/:character_id", isLoggedIn, (req, res, next) => {
 	const { personality, ideals, bonds, flaws } = req.body;
-
+	const { character_id } = req.params
 
 	const background = {
 		personality: personality,
@@ -136,16 +216,11 @@ router.post("/characters/create/background", isLoggedIn, (req, res, next) => {
 	};
 
 	Character
-	.create({ background })
+		.findByIdAndUpdate(character_id, { background })
 		.then(() => {
 			res.redirect("/characters");
 		})
 		.catch((err) => console.log(err));
 });
-
-
-
-
-
 
 module.exports = router;
