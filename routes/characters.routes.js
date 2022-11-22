@@ -10,19 +10,17 @@ const Character = require("./../models/Character.model");
 
 //Character list
 router.get("/characters", isLoggedIn, (req, res, next) => {
-	let user;
 
-	User.findById(req.session.currentUser._id)
-		.populate("characters")
-		.then((theUser) => {
-			user = theUser;
-			return Character.find({ user: req.session.currentUser._id }).select({ charactername: 1, classes: 1, race: 1 });
-		})
-		.then((characters) => {
-			res.render("character/list", { user, characters });
-		})
+	const promises = [
+		User.findById(req.session.currentUser._id),
+		Character.find({ user: req.session.currentUser._id }).select({ charactername: 1, classes: 1, race: 1 })
+	]
+
+	Promise
+		.all(promises)
+		.then(([user, characters]) => res.render("character/list", { user, characters }))
 		.catch((err) => console.log(err));
-});
+})
 
 // Create characters
 router.get("/characters/create", isLoggedIn, (req, res, next) => {
@@ -51,6 +49,7 @@ router.get("/characters/create", isLoggedIn, (req, res, next) => {
 });
 
 router.post("/characters/create", isLoggedIn, (req, res, next) => {
+
 	let userId = req.session.currentUser._id;
 	const { charactername, classes, race, imageUrl, user } = req.body;
 

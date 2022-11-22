@@ -33,15 +33,16 @@ router.get("/events/create", (req, res, next) => {
 });
 
 router.post("/events/create", (req, res, next) => {
-	const { title, description, lat, lng, date, user, post, place } = req.body;
-	
+	const { title, description, lat, lng, date, post, place } = req.body;
+
+	const { _id: user } = req.session.currentUser
 
 	const location = {
 		type: "Point",
 		coordinates: [lat, lng],
 	};
 
-	Event.create({ title, description, location, date, user: req.session.currentUser._id, place })
+	Event.create({ title, description, location, date, user, place })
 		.then(() => {
 			res.redirect("/events");
 		})

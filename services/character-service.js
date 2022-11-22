@@ -8,10 +8,10 @@ class ApiService {
 	}
 
 	getClasses() {
-		return this.dndApi.get("/classes").then((classes) => classes.data);
+		return this.dndApi.get("/classes").then(({ data }) => data);
 	}
 	getRaces() {
-		return this.dndApi.get("/races").then((races) => races.data);
+		return this.dndApi.get("/races").then(({ data }) => data);
 	}
 
 	/* listCharacters = () => {
@@ -33,7 +33,7 @@ class ApiService {
 	deleteCharacter = (characterId) => {
 		return this.axiosApp.delete(`/characters/${characterId}`).then((character) => character.data);
 	};
-    */
+	*/
 }
 
 module.exports = ApiService;
