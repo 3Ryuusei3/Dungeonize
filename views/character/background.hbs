@@ -1,0 +1,64 @@
+<div class="container">
+
+	<div class="row justify-content-center">
+
+
+		<div class="col-md-6">
+			<h1 class="mt-5 mb-3">New character</h1>
+
+			<form action="/characters/create/background" method="POST">
+            <div class="text mb-4 border-start border-danger border-4 ps-3 py-3 mb-3 bg-danger bg-opacity-10">Fleshing out your character’s personality—the array of traits, mannerisms, habits, beliefs, and flaws that give a person a unique identity—will help you bring him or her to life as you play the game. </div>
+
+				<div class="mb-3 col">
+					<label for="personality" class="form-label">Personality</label>
+                    <div class="form-text mb-3"><em>Personality traits are small, simple ways to help you set your character apart from every other character. </em></div>
+					<select id="personality" class="form-select mb-4" aria-label="Default select example" name="personality">
+						<option selected>Select your prefered personality</option>
+						{{#each allPersonalities}}
+							<option value="{{string}}">{{string}}</option>
+						{{/each}}
+					</select>
+				</div>
+                <div class="mb-3 col">
+					<label for="ideals" class="form-label">Ideals</label>
+                    <div class="form-text mb-3"><em>Ideals encompass everything from your life goals to your core belief system.</em></div>
+					<select id="ideals" class="form-select mb-4" aria-label="Default select example" name="ideals">
+						<option selected>Select your prefered ideals</option>
+						{{#each allIdeals}}
+							<option value="{{desc}}">{{desc}}</option>
+						{{/each}}
+					</select>
+				</div>
+                 <div class="mb-3 col">
+					<label for="bonds" class="form-label">Bonds</label>
+                    <div class="form-text mb-3"><em>Bonds represent a character’s connections to people, places, and events in the world. </em></div>
+					<select id="bonds" class="form-select mb-4" aria-label="Default select example" name="bonds">
+						<option selected>Select your prefered bonds</option>
+						{{#each allBonds}}
+							<option value="{{string}}">{{string}}</option>
+						{{/each}}
+					</select>
+				</div>
+                 <div class="mb-3 col">
+					<label for="flaws" class="form-label">Flaws</label>
+                    <div class="form-text mb-3"><em>Your character’s flaw represents some vice, compulsion, fear, or weakness—in particular, anything that someone else could exploit to bring you to ruin or cause you to act against your best interests.</em></div>
+					<select id="flaws" class="form-select mb-4" aria-label="Default select example" name="flaws">
+						<option selected>Select your prefered flaws</option>
+						{{#each allFlaws}}
+							<option value="{{string}}">{{string}}</option>
+						{{/each}}
+					</select>
+				</div>
+				{{! <div class="mb-3">
+					<label for="imageInput" class="form-label">Imagen</label>
+					<input type="url" class="form-control" id="imageInput" name="imageUrl" />
+					<div class="form-text">Introduce la URL a la imagen que desees de perfil.</div>
+				</div> }}
+				<div class="my-5 d-grid gap-2">
+					<button type="submit" class="btn btn-dark block">Create new character</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</div>

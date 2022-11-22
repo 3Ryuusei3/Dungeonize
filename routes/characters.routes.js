@@ -11,6 +11,7 @@ const Character = require("./../models/Character.model");
 //Character list
 router.get("/characters", isLoggedIn, (req, res, next) => {
 
+
 	const promises = [
 		User.findById(req.session.currentUser._id),
 		Character.find({ user: req.session.currentUser._id }).select({ charactername: 1, classes: 1, race: 1 })
@@ -45,7 +46,8 @@ router.get("/characters/create", isLoggedIn, (req, res, next) => {
 		})
 		.then(() => {
 			res.render("character/create", { allClasses, allRaces });
-		});
+		})
+		.catch((err) => console.log(err))
 });
 
 router.post("/characters/create", isLoggedIn, (req, res, next) => {
@@ -88,7 +90,62 @@ router.post("/characters/delete/:character_id", isLoggedIn, (req, res) => {
 
 	Character.findByIdAndDelete(character_id)
 		.then(() => res.redirect("/characters"))
+		.catch((err) => console.log(err))
+});
+
+// Create background
+router.get("/characters/create/background", isLoggedIn, (req, res, next) => {
+
+	let allPersonalities = [];
+	let allIdeals = [];
+	let allBonds = [];
+	let allFlaws = [];
+
+	characterService
+		.getBackground()
+		.then((data) => {
+			// allPersonalities.map(elm => elm.data.personality_traits.from.options)
+			data.personality_traits.from.options.forEach((elm) => {
+				allPersonalities.push(elm)
+			})
+			data.ideals.from.options.forEach((elm) => {
+				allIdeals.push(elm)
+			})
+			data.bonds.from.options.forEach((elm) => {
+				allBonds.push(elm)
+			})
+			data.flaws.from.options.forEach((elm) => {
+				allFlaws.push(elm)
+			})
+			res.render("character/background", { allPersonalities, allIdeals, allBonds, allFlaws });
+		})
+		.catch ((err) => console.log(err))
+});
+
+
+router.post("/characters/create/background", isLoggedIn, (req, res, next) => {
+
+	const { personality, ideals, bonds, flaws } = req.body;
+
+
+	const background = {
+		personality: personality,
+		ideals: ideals,
+		bonds: bonds,
+		flaws: flaws,
+	};
+
+	Character
+	.create({ background })
+		.then(() => {
+			res.redirect("/characters");
+		})
 		.catch((err) => console.log(err));
 });
+
+
+
+
+
 
 module.exports = router;

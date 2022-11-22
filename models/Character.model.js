@@ -24,6 +24,20 @@ const characterSchema = new mongoose.Schema(
 			type: String,
 			default: "https://i.pinimg.com/originals/e2/d4/52/e2d4524dde801da2ee190b67b34f2a8b.png",
 		},
+		background: {
+			personality: {
+				type: String,
+			},
+			ideals: {
+				type: String,
+			},
+			bonds: {
+				type: String,
+			},
+			flaws: {
+				type: String,
+			},
+		}
 	},
 	{
 		timestamps: true,

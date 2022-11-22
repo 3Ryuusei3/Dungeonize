@@ -13,6 +13,9 @@ class ApiService {
 	getRaces() {
 		return this.dndApi.get("/races").then(({ data }) => data);
 	}
+	getBackground() {
+		return this.dndApi.get("/backgrounds/acolyte").then(({ data}) => data);
+	}
 
 	/* listCharacters = () => {
 		return this.axiosApp.get("/characters").then((res) => res.data);
