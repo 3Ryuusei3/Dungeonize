@@ -12,15 +12,16 @@
 
 			<p class="pb-2"><strong class="text-danger">Dungeon Master: </strong>{{event.user.username}}</p>
 
-			{{! Pendiente de popular los jugadores }}
-			<p class="pb-2"><strong class="text-danger">List of participants:
-					{{#each event.characters}}
-					<ul>{{charactername}}</ul>
-					{{/each}}
-				</strong></p>
+			<p class="pb-2"><strong class="text-danger">List of participants: </strong></p>
+			<div class="text-black">
+				{{#each event.characters}}
+				<ul>{{charactername}}</ul>
+				{{/each}}
+			</div>
+
 
 			{{#if isPlayer}}
-
+			{{#unless isJoined}}
 			<div class="mb-3 col">
 				<form action="/events/details/{{event._id}}" method="POST" style="display: inline">
 					<label for="characters" class="form-label">Your characters</label>
@@ -35,7 +36,7 @@
 					<input type="submit" value="Join with this character" class="btn btn-success" />
 				</form>
 			</div>
-
+			{{/unless}}
 			{{/if}}
 
 

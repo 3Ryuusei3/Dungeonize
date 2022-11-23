@@ -58,18 +58,25 @@ router.get("/events/details/:events_id", (req, res, next) => {
 	const promises = [
 		Character.find({ user: req.session.currentUser._id }).select({ charactername: 1 }),
 		Event.findById(events_id)
+			.populate('characters')
 	]
-
 	Promise
 		.all(promises)
 		.then(([characters, event]) => {
+			let isJoined;
+			if (event.characters.length > 0) {
+				isJoined = event.characters[0].user.toString() === req.session.currentUser._id;
+			} else {
+				isJoined = false;
+			}
 			res.render("event/details", {
-				characters, event,
+				characters,
+				event,
 				isDM: req.session.currentUser.role === "DM",
+				isJoined,
+				isMaximumReached: event.characters.length + 1 === event.maxParticipant,
 				isPlayer: req.session.currentUser.role === "Player"
 			})
-
-
 		});
 });
 
@@ -77,9 +84,8 @@ router.get("/events/details/:events_id", (req, res, next) => {
 router.post("/events/details/:events_id", (req, res, next) => {
 	const { events_id } = req.params
 	const { characters } = req.body
-	console.log(characters)
 	Event
-		.findByIdAndUpdate(events_id, { characters })
+		.findByIdAndUpdate(events_id, { $push: { characters: characters } })
 		.then(() => {
 			res.redirect(`/events/details/${events_id}`)
 		})
