@@ -40,14 +40,14 @@ h3 {
 }
 
 .bg-dark {
-	background-color: rgb(56, 9, 9) !important;
+	background-color: #4a0909 !important;
 }
 
 /* Hero */
 
 .hero {
 	background-size: contain;
-	height: 95vh;
+	height: 94vh;
 	background-size: cover;
 	background-repeat: no-repeat;
 	color: black;
@@ -63,7 +63,7 @@ h3 {
 	white-space: nowrap;
 	z-index: 1;
 	padding: 20px 40px;
-	background-color: rgb(35, 21, 5);
+	background-color: #231505;
 	mix-blend-mode: multiply;
 	font-family: vanderickregular;
 	top: 50%;
@@ -86,6 +86,51 @@ h3 {
 
 .video-container .caption {
 	text-align: center;
+}
+
+/* Features */
+
+.features {
+	background-color: rgb(245, 209, 137);
+}
+
+.features-card {
+	background-color: transparent !important;
+	transition: 0.5s;
+}
+
+.features-card:hover {
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
+	background-color: rgb(252, 224, 168) !important;
+}
+
+.feature-icon {
+	width: 80%; 
+	margin-inline: auto;
+	transition: 0.5s;
+}
+
+.feature-icon:hover {
+	scale: 1.05;
+	border-radius: 50%;
+}
+
+/* Hero image */
+
+.quote {
+	background: linear-gradient(0deg, rgb(53, 6, 6) 40%, rgb(245, 209, 137) 100%);
+}
+
+.image-container {
+	margin-inline: auto;
+}
+
+.quote img {
+	width: 80%;
+}
+
+.quote p {
+	color: blanchedalmond;
 }
 
 /* Characters */
@@ -119,6 +164,17 @@ h3 {
 
 #eventMap {
 	height: 350px;
+}
+
+/* Footer */
+
+footer {
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: #4a0909;
+	color: blanchedalmond;
+	padding: 16px;
 }
 
 /* Error message */
