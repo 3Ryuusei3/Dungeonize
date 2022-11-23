@@ -17,10 +17,11 @@ router.get("/events", (req, res, next) => {
 				events,
 				/* formattedDates, */
 				isDM: req.session.currentUser.role === "DM",
+				isPlayer: req.session.currentUser.role === "Player"
 			});
 
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 // Create Events
@@ -29,11 +30,11 @@ router.get("/events/create", (req, res, next) => {
 		.then(() => {
 			res.render("event/create");
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 router.post("/events/create", (req, res, next) => {
-	const { title, description, lat, lng, date, post, place } = req.body;
+	const { title, description, lat, lng, date, post, place, maxParticipant } = req.body;
 
 	const { _id: user } = req.session.currentUser
 
@@ -42,26 +43,50 @@ router.post("/events/create", (req, res, next) => {
 		coordinates: [lat, lng],
 	};
 
-	Event.create({ title, description, location, date, user, place })
+	Event.create({ title, description, location, date, user, place, maxParticipant })
 		.then(() => {
 			res.redirect("/events");
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 //Details Events
 router.get("/events/details/:events_id", (req, res, next) => {
 	const { events_id } = req.params;
 
-	Event.findById(events_id)
-		.populate("user characters")
-		.then((event) => {
+
+	const promises = [
+		Character.find({ user: req.session.currentUser._id }).select({ charactername: 1 }),
+		Event.findById(events_id)
+	]
+
+	Promise
+		.all(promises)
+		.then(([characters, event]) => {
 			res.render("event/details", {
-				event,
+				characters, event,
 				isDM: req.session.currentUser.role === "DM",
-			});
+				isPlayer: req.session.currentUser.role === "Player"
+			})
+
+
 		});
 });
+
+//    Join Event
+router.post("/events/details/:events_id", (req, res, next) => {
+	const { events_id } = req.params
+	const { characters } = req.body
+	console.log(characters)
+	Event
+		.findByIdAndUpdate(events_id, { characters })
+		.then(() => {
+			res.redirect(`/events/details/${events_id}`)
+		})
+		.catch((error) => { next(error) });
+
+})
+
 
 // Edit Character
 router.get("/events/edit/:events_id", isLoggedIn, (req, res, next) => {
@@ -71,7 +96,7 @@ router.get("/events/edit/:events_id", isLoggedIn, (req, res, next) => {
 		.then((event) => {
 			res.render("event/edit", event);
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 router.post("/events/edit/:events_id", isLoggedIn, (req, res, next) => {
@@ -82,7 +107,7 @@ router.post("/events/edit/:events_id", isLoggedIn, (req, res, next) => {
 		.then(() => {
 			res.redirect(`/events`);
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 // Delete Character
@@ -91,7 +116,7 @@ router.post("/events/delete/:events_id", isLoggedIn, (req, res) => {
 
 	Event.findByIdAndDelete(events_id)
 		.then(() => res.redirect("/events"))
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 module.exports = router;

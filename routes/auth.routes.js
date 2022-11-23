@@ -21,10 +21,11 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
 			.then((salt) => bcrypt.hash(password, salt))
 			.then((hashedPassword) => User.create({ username, email, description, password: hashedPassword }))
 			.then(() => res.redirect("/login"))
-			.catch((error) => console.log(error));
+			.catch((error) => { next(error) });
 	} else {
 		res.render("auth/signup", { errorMessage: "Password must container at least 8 characters." });
 	}
+
 });
 
 // Login
@@ -51,7 +52,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 				res.redirect("/dashboard");
 			}
 		})
-		.catch((error) => console.log(error));
+		.catch((error) => { next(error) });
 });
 
 // Logout

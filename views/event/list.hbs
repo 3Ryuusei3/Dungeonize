@@ -2,24 +2,29 @@
 	<h1 class="my-4">Events</h1>
 	<div class="row d-flex justify-content-center gap-4">
 		{{#each events}}
-			<div class="card justify-content-between col-lg-3 col-md-4 px-3 gap-2" style="width: 24rem;">
-					<h2 class="card-title my-3 fw-bolder"><a href="/events/details/{{_id}}">{{title}}</a></h2>
-					<p class="place"><strong>{{place}}</strong></p>
-					<p class="text-subtitle fs ps-3"><em><small>{{description}}</small></em></p>
-					<p class="text-start"><strong>{{formattedDates}}</strong></p>
-					<div class="mb-3">
-                    {{#if ../isDM}}
-						<a class="justify-self-end btn btn-secondary" href="/events/edit/{{_id}}">Edit event</a>
-						<form action="/events/delete/{{_id}}" method="POST" class="btn btn-danger m-0">
-							<input type="submit" value="Delete event" class="btn btn-danger p-0" />
-						</form>
-					{{/if}}
-                    </div>
-
+		<div class="card justify-content-between col-lg-3 col-md-4 px-3 gap-2" style="width: 24rem;">
+			<h2 class="card-title my-3 fw-bolder"><a href="/events/details/{{_id}}">{{title}}</a></h2>
+			<p class="place"><strong>{{place}}</strong></p>
+			<p class="text-subtitle fs ps-3"><em><small>{{description}}</small></em></p>
+			<p class="text-start"><strong>{{formattedDates}}</strong></p>
+			<p class="text-start"><strong>Number max of Participant : {{maxParticipant}}</strong></p>
+			<div class="mb-3">
+				{{#if ../isDM}}
+				<a class="justify-self-end btn btn-secondary" href="/events/edit/{{_id}}">Edit event</a>
+				<form action="/events/delete/{{_id}}" method="POST" class="btn btn-danger m-0">
+					<input type="submit" value="Delete event" class="btn btn-danger p-0" />
+				</form>
+				{{/if}}
 			</div>
+			{{#if ../isPlayer}}
+
+			<a class="justify-self-end btn btn-success" href="/events/details/{{_id}}">Join event</a>
+
+			{{/if}}
+		</div>
 		{{/each}}
 	</div>
 	{{#if isDM}}
-		<a href="/events/create" class="btn btn-success mt-4">Create new event</a>
+	<a href="/events/create" class="btn btn-success mt-4">Create new event</a>
 	{{/if}}
 </div>

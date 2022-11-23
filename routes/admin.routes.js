@@ -8,7 +8,7 @@ router.get("/admin", isLoggedIn, checkRoles("Admin"), (req, res, next) => {
 	User.find()
 		/* .select({ username: 1 }) */
 		.then((user) => res.render("admin/panel", { user }))
-		.catch((error) => console.log(error));
+		.catch((error) => { next(error) });
 });
 
 module.exports = router;

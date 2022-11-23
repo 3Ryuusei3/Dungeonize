@@ -20,7 +20,7 @@ router.get("/characters", isLoggedIn, (req, res, next) => {
 	Promise
 		.all(promises)
 		.then(([user, characters]) => res.render("character/list", { user, characters }))
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 })
 
 // Create characters
@@ -47,7 +47,7 @@ router.get("/characters/create", isLoggedIn, (req, res, next) => {
 		.then(() => {
 			res.render("character/create", { allClasses, allRaces });
 		})
-		.catch((err) => console.log(err))
+		.catch((error) => { next(error) });
 });
 
 router.post("/characters/create", isLoggedIn, (req, res, next) => {
@@ -59,7 +59,7 @@ router.post("/characters/create", isLoggedIn, (req, res, next) => {
 		.then((character) => {
 			res.redirect(`/characters/create/class/${character._id}`);
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 // Edit Character
@@ -70,7 +70,7 @@ router.get("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
 		.then((character) => {
 			res.render("character/edit", character);
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 router.post("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
@@ -81,7 +81,7 @@ router.post("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
 		.then(() => {
 			res.redirect(`/characters`);
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 // Delete Character
@@ -90,7 +90,7 @@ router.post("/characters/delete/:character_id", isLoggedIn, (req, res) => {
 
 	Character.findByIdAndDelete(character_id)
 		.then(() => res.redirect("/characters"))
-		.catch((err) => console.log(err))
+		.catch((error) => { next(error) });
 });
 
 // Create class
@@ -100,11 +100,11 @@ router.get("/characters/create/class/:character_id", isLoggedIn, (req, res, next
 	let allTraits;
 
 	Character.findById(character_id)
-		.then((character) => {  
+		.then((character) => {
 			characterClass = character.classes.toLowerCase();
 			return characterService.getClassTraits()
 		})
-		.then((data) => {		
+		.then((data) => {
 			allTraits = data.results.map((elm) => elm)
 			return characterService.getClassInfo(characterClass);      ////promise all
 		})
@@ -112,10 +112,10 @@ router.get("/characters/create/class/:character_id", isLoggedIn, (req, res, next
 			const health = data.hit_die
 			const allSkills = data.proficiency_choices[0].from.options.map((elem2) => elem2.item.name);
 			const equipment = data.starting_equipment.map((elm) => elm.equipment)
-			
+
 			res.render("character/class", { allTraits, character_id, health, allSkills, equipment });
 		})
-		.catch((err) => console.log(err))
+		.catch((error) => { next(error) });
 });
 
 
@@ -135,7 +135,7 @@ router.post("/characters/create/class/:character_id", isLoggedIn, (req, res, nex
 		.then(() => {
 			res.redirect(`/characters/create/race/${character_id}`);
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 
@@ -147,7 +147,7 @@ router.get("/characters/create/race/:character_id", isLoggedIn, (req, res, next)
 	Character.findById(character_id)
 		.then((character) => {
 			characterRace = character.race.toLowerCase()
-			return characterService.getRacesInfo(characterRace);      
+			return characterService.getRacesInfo(characterRace);
 		})
 		.then((data) => {
 			const speed = data.speed
@@ -159,7 +159,7 @@ router.get("/characters/create/race/:character_id", isLoggedIn, (req, res, next)
 
 			res.render("character/race", { speed, allAlignments, ageDescription, sizeDescription, allLanguages, allTraits, character_id });
 		})
-		.catch((err) => console.log(err))
+		.catch((error) => { next(error) });
 });
 
 
@@ -182,7 +182,7 @@ router.post("/characters/create/race/:character_id", isLoggedIn, (req, res, next
 		.then(() => {
 			res.redirect(`/characters/create/background/${character_id}`);
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 
@@ -190,7 +190,7 @@ router.post("/characters/create/race/:character_id", isLoggedIn, (req, res, next
 // Create background
 router.get("/characters/create/background/:character_id", isLoggedIn, (req, res, next) => {
 	const { character_id } = req.params
-	
+
 	characterService
 		.getBackground()
 		.then((data) => {
@@ -200,7 +200,7 @@ router.get("/characters/create/background/:character_id", isLoggedIn, (req, res,
 			const allFlaws = data.flaws.from.options.map((elm) => elm)
 			res.render("character/background", { character_id, allPersonalities, allIdeals, allBonds, allFlaws });
 		})
-		.catch ((err) => console.log(err))
+		.catch((error) => { next(error) });
 });
 
 
@@ -220,7 +220,7 @@ router.post("/characters/create/background/:character_id", isLoggedIn, (req, res
 		.then(() => {
 			res.redirect("/characters");
 		})
-		.catch((err) => console.log(err));
+		.catch((error) => { next(error) });
 });
 
 module.exports = router;
