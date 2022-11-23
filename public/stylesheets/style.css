@@ -31,6 +31,11 @@ h3 {
 	width: 100px;
 }
 
+.page-wrapper {
+	position: relative;
+  	min-height: 100%;
+}
+
 /* Navbar */
 
 .navbar-brand {
@@ -56,8 +61,13 @@ h3 {
 	align-items: center;
 }
 
-.center > h1 {
+.caption {
 	position: absolute;
+	max-width: max-content;
+	margin-inline: auto;
+}
+
+.caption > h1 {
 	font-size: 90px;
 	color: #fff;
 	white-space: nowrap;
@@ -66,21 +76,21 @@ h3 {
 	background-color: #231505;
 	mix-blend-mode: multiply;
 	font-family: vanderickregular;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
 	box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
 }
 
 .video-container {
-	height: 95vh;
+	height: 94vh;
 	width: 100vw;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .video-container video {
 	width: 100%;
 	height: 100%;
-
 	object-fit: cover;
 }
 
@@ -133,6 +143,22 @@ h3 {
 	color: blanchedalmond;
 }
 
+@media (max-width: 800px) {
+	.caption > h1 {
+		font-size: 60px;
+		padding: 15px 30px;
+		box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
+	}
+}
+
+@media (max-width: 500px) {
+	.caption > h1 {
+		font-size: 45px;
+		padding: 10px 20px;
+		box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
+	}
+}
+
 /* Characters */
 
 .class {
@@ -169,7 +195,9 @@ h3 {
 /* Footer */
 
 footer {
+	position: absolute;
 	left: 0;
+	right: 0;
 	bottom: 0;
 	width: 100%;
 	background-color: #4a0909;
