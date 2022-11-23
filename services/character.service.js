@@ -1,10 +1,10 @@
-const axios = require("axios");
+const axios = require("axios")
 
 class ApiService {
 	constructor() {
 		this.dndApi = axios.create({
 			baseURL: "https://www.dnd5eapi.co/api",
-		});
+		})
 	}
 
 	getClasses() {
@@ -28,4 +28,4 @@ class ApiService {
 
 }
 
-module.exports = ApiService;
+module.exports = ApiService

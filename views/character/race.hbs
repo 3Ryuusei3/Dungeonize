@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-5">
 
 	<div class="row justify-content-center">
 
@@ -12,7 +12,7 @@
 				<div class="mb-3 col">
 					<label for="speed" class="form-label">Speed</label>
                     <div class="form-text mb-3"><em>Speed determines the distance in feet that the character or monster can walk in 1 round. </em></div>
-					<input type="text" class="form-control" id="speed" name="speed" value="{{speed}}"/>
+					<input readonly type="text" class="form-control read-only" id="speed" name="speed" value="{{speed}}"/>
 				</div>
                 <div class="mb-3 col">
 					<label for="alignment" class="form-label">Alignment</label>
@@ -32,17 +32,17 @@
                 <div class="mb-3 col">
 					<label for="ageDescription" class="form-label">Age description</label>
                     <div class="form-text mb-3"><em>Each class has its own maximum age.</em></div>
-                    <textarea type="text" class="form-control" id="ageDescription" name="ageDescription" >{{ageDescription}}</textarea>
+                    <textarea readonly type="text" class="form-control read-only" id="ageDescription" name="ageDescription" rows="3">{{ageDescription}}</textarea>
 				</div>
                  <div class="mb-3 col">
 					<label for="sizeDescription" class="form-label">Size description</label>
                     <div class="form-text mb-3"><em>Each class has its own size.</em></div>
-                    <textarea type="text" class="form-control" id="ageDessizeDescriptioncription" name="sizeDescription" >{{sizeDescription}}</textarea>
+                    <textarea readonly type="text" class="form-control read-only" id="ageDessizeDescriptioncription" name="sizeDescription" rows="3">{{sizeDescription}} </textarea>
 				</div>
                  <div class="mb-3 col">
 					<label for="languages" class="form-label">Languages</label>
                     <div class="form-text mb-3"><em>Languages are simply the different types of speech used by various peoples and creatures of a world, whether a Homebrew or a canon world like Forgotten Realms or Eberron.</em></div>
-                    <input type="text" class="form-control" id="languages" name="languages" value="{{#each allLanguages}}{{this}}.{{/each}}" />
+                    <input readonly type="text" class="form-control read-only" id="languages" name="languages" value="{{#each allLanguages}}{{this}}.{{/each}}" />
 				</div>
 
                  <div class="mb-3 col">

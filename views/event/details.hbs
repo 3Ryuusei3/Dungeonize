@@ -1,31 +1,43 @@
-<div class="container mb-5">
+<div class="container my-5">
 	<div class="row d-flex justify-content-center">
 		<div class="col-md-6">
 			<div class="d-flex justify-content-between align-items-center">
-				<h1 class="mt-5 mb-3 text-center fw-bolder">{{event.title}}</h1>
+				<h1 class="mb-3 text-center fw-bolder">{{event.title}}</h1>
 			</div>
 			<p class="pb-2"><strong class="text-danger">Location: </strong>{{event.place}}</p>
 
 			<p class="pb-2 ps-4 text-justify"><em>{{event.description}}</em></p>
 
-			<p class="pb-2"><strong class="text-danger">Date: </strong>{{event.date}}</p>
+			<p class="pb-2"><strong class="text-danger">Date: </strong>{{event.formattedDate}}</p>
 
 			<p class="pb-2"><strong class="text-danger">Dungeon Master: </strong>{{event.user.username}}</p>
+
+			<p class="pb-2"><strong class="text-danger">Number max of player: </strong>{{event.maxParticipant}}</p>
 
 			<p class="pb-2"><strong class="text-danger">List of participants: </strong></p>
 			<div class="text-black">
 				{{#each event.characters}}
-				<ul>{{charactername}}</ul>
+				<ul><li>{{charactername}} {{#if ../isDM}}
+
+			<form action="/events/characters/delete/{{_id}}" method="POST" style="display: inline">
+				<input type="submit" value="Kick character" class="btn btn-danger" />
+			</form>
+			</li>
+
+			{{/if}}</ul>
 				{{/each}}
 			</div>
+
+		
 
 
 			{{#if isPlayer}}
 			{{#unless isJoined}}
+			{{#unless isMaximumReached}}
 			<div class="mb-3 col">
 				<form action="/events/details/{{event._id}}" method="POST" style="display: inline">
 					<label for="characters" class="form-label">Your characters</label>
-					<div class="form-text mb-3"><em>Chosse your character for join event.</em></div>
+					<div class="form-text mb-3"><em>Choose your character to join the event.</em></div>
 					<select id="characters" class="form-select mb-4" aria-label="Default select example"
 						name="characters">
 						<option selected>Character</option>
@@ -37,8 +49,8 @@
 				</form>
 			</div>
 			{{/unless}}
+			{{/unless}}
 			{{/if}}
-
 
 			<figure id="eventMap"></figure>
 

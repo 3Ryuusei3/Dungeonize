@@ -1,5 +1,5 @@
-//const { Schema, model } = require("mongoose");
-const mongoose = require("mongoose");
+//const { Schema, model } = require("mongoose")
+const mongoose = require("mongoose")
 
 const characterSchema = new mongoose.Schema(
 	{
@@ -79,6 +79,6 @@ const characterSchema = new mongoose.Schema(
 	{
 		timestamps: true,
 	}
-);
+)
 
-module.exports = mongoose.model("Character", characterSchema);
+module.exports = mongoose.model("Character", characterSchema)

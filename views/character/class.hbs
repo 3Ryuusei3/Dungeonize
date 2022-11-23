@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-5">
 
 	<div class="row justify-content-center">
 
@@ -7,12 +7,12 @@
 			<h1 class="mt-5 mb-3">Customize your class</h1>
 
 			<form action="/characters/create/class/{{character_id}}" method="POST">
-            <div class="text mb-4 border-start border-danger border-4 ps-3 py-3 mb-3 bg-danger bg-opacity-10">Class is the primary definition of what your character can do. It’s more than a profession; it’s your character’s calling. Class shapes the way you think about the world and interact with it and your relationship with other people and powers in the multiverse</div>
+            <div class="text mb-4 border-start border-danger border-4 ps-3 py-3 mb-3 bg-danger bg-opacity-10">Class is the primary definition of what your character can do. It’s more than a profession it’s your character’s calling. Class shapes the way you think about the world and interact with it and your relationship with other people and powers in the multiverse</div>
 
 				<div class="mb-3 col">
 					<label for="health" class="form-label">Health points</label>
                     <div class="form-text mb-3"><em>Your character’s hit points define how tough your character is in combat and other dangerous situations. </em></div>
-					<input type="text" class="form-control" id="health" name="health" value="{{health}}"/>
+					<input readonly type="text" class="form-control read-only" id="health" name="health" value="{{health}}"/>
 				</div>
                 <div class="mb-3 col">
 					<label for="skills" class="form-label">Skill</label>
@@ -27,7 +27,7 @@
                  <div class="mb-3 col">
 					<label for="equipment" class="form-label">Equipment</label>
                     <div class="form-text mb-3"><em>Your class and background determine your character’s starting equipment, including weapons, armor, and other adventuring gear.</em></div>
-                    <input type="text" class="form-control" id="equipment" name="equipment" value="{{#each equipment}}{{name}}. {{/each}}" />
+                    <input readonly type="text" class="form-control read-only" id="equipment" name="equipment" value="{{#each equipment}}{{name}}. {{/each}}" />
 				</div>
                  <div class="mb-3 col">
 					<label for="traits" class="form-label">Trait</label>

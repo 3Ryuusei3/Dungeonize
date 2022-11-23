@@ -1,31 +1,32 @@
 function isLoggedIn(req, res, next) {
 	if (req.session.currentUser) {
-		next();
+		next()
 	} else {
-		res.render("auth/login", { errorMessage: "Login to access." });
+		res.render("auth/login", { errorMessage: "Login to access." })
 	}
 }
 
 function isLoggedOut(req, res, next) {
 	if (!req.session.currentUser) {
-		next();
+		next()
 	} else {
-		res.redirect(`/dashboard`);
+		res.redirect(`/dashboard`)
 	}
 }
+
 
 const checkRoles =
 	(...rolesToCheck) =>
 	(req, res, next) => {
 		if (rolesToCheck.includes(req.session.currentUser.role)) {
-			next();
+			next()
 		} else {
-			res.render("dashboard", { errorMessage: `You do not have ${rolesToCheck} priviledges` });
+			res.render("index", { errorMessage: `You do not have ${rolesToCheck} priviledges` })
 		}
-	};
+	}
 
 module.exports = {
 	isLoggedIn,
 	isLoggedOut,
-	checkRoles,
-};
+	checkRoles
+}

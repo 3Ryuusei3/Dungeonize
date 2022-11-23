@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const eventSchema = new mongoose.Schema(
 	{
@@ -49,10 +49,10 @@ const eventSchema = new mongoose.Schema(
 	{
 		timestamps: true,
 	}
-);
+)
 
-eventSchema.index({ location: "2dsphere" });
+eventSchema.index({ location: "2dsphere" })
 
-module.exports = mongoose.model("Event", eventSchema);
+module.exports = mongoose.model("Event", eventSchema)
 
 // post.model, lo tiene Manu, para poder meter un semi foro en cada evento, deberíamos de popularlo
