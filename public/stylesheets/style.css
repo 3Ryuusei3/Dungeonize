@@ -42,6 +42,7 @@ body {
 	margin: 0;
 	font-weight: 200;
 	font-family: sans-serif;
+	background-image: url("https://res.cloudinary.com/dhws4e2ty/image/upload/v1669323415/output-onlinepngtools_1_acwthc.png");
 }
 
 h1,
@@ -56,7 +57,9 @@ h3 {
 }
 
 .profile-img {
-	width: 150px;
+	object-fit: cover;
+	width: 120px;
+	height: 120px;
 }
 
 .flex-wrapper {
@@ -71,6 +74,26 @@ h3 {
 	color: rgb(99, 99, 99) !important;
 }
 
+.page-title {
+	font-family: bookmaniaregular !important;
+	font-size: 45px;
+}
+
+.details-link {
+	font-family: vanderickregular;
+	text-decoration: none;
+	color: #81130c;
+}
+
+.details-link:hover {
+	color: #b83329;
+}
+
+.card {
+	background-color: rgb(253, 249, 243);
+}
+
+
 /* Navbar */
 
 .navbar-brand {
@@ -81,6 +104,10 @@ h3 {
 
 .bg-dark {
 	background-color: #4a0909 !important;
+}
+
+.dropdown-menu[data-bs-popper] {
+	left: -25% !important;
 }
 
 /* Hero */
@@ -112,6 +139,21 @@ h3 {
 	mix-blend-mode: multiply;
 	font-family: vanderickregular;
 	box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
+	animation: title 3s ease-in;
+	transition: 2s ease;
+}
+
+.caption > h1:hover {
+	scale: 1.03;
+}
+
+@keyframes title {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .video-container {
@@ -136,20 +178,9 @@ h3 {
 /* Features */
 
 .features {
-	background: linear-gradient(0deg, rgb(53, 6, 6) 10%, rgb(221, 168, 125) 100%);;
+	background-image: url("https://res.cloudinary.com/dhws4e2ty/image/upload/v1669311422/output-onlinepngtools_ar3fwr.png"), linear-gradient(0deg, rgb(57, 0, 0) 30%, rgb(221, 168, 125) 100%);
 	position: relative;
-}
-
-.features::before {
-	content: "";
-	background: url("https://res.cloudinary.com/dhws4e2ty/image/upload/v1669226431/paper-texture_ezocrf.jpg");
 	background-size: cover;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 0.4;
 }
 
 .features-card {
@@ -160,6 +191,7 @@ h3 {
 .features-card:hover {
 	scale: 1.02;
 	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.75);
+	background-color: rgba(248, 196, 141, 0.5) !important;
 }
 
 .feature-icon {
@@ -181,11 +213,20 @@ h3 {
 
 .quote img {
 	width: 80%;
+	opacity: 0.8;
 }
 
 .quote {
 	font-family: bookmaniaitalic;
-	color: rgb(255, 255, 255);
+	color: rgba(255, 255, 255, 0.798);
+	position: relative;
+}
+
+.quote p::after {
+	position: absolute;
+	bottom: -30;
+	content: url("https://static.thenounproject.com/png/218748-200.png");
+	opacity: 0.12;
 }
 
 @media (max-width: 800px) {
@@ -207,8 +248,9 @@ h3 {
 /* Characters */
 
 .class {
-	border: solid 1px rgb(123, 230, 252);
-	color: rgb(123, 230, 252);
+	border: solid 1px rgb(146, 28, 28);
+	background-color: #fff;
+	color: rgb(146, 28, 28);
 	max-width: max-content;
 	align-self: flex-end;
 	padding: 5px 10px;
@@ -219,6 +261,7 @@ h3 {
 .race,
 .place {
 	border: solid 1px rgb(252, 123, 123);
+	background-color: #fff;
 	color: rgb(252, 123, 123);
 	max-width: max-content;
 	align-self: flex-end;
@@ -238,8 +281,28 @@ h3 {
 	height: 50px;
 }
 
+.character-bg-img {
+	position: absolute;
+	width: 90%;
+	bottom: 0;
+	right: -40;
+	overflow: auto;
+	opacity: .2;
+	z-index: 1;
+}
+
+.event-bg-img {
+	position: absolute;
+	width: 70%;
+	bottom: -30;
+	right: -40;
+	overflow: auto;
+	opacity: .2;
+	z-index: 1;
+}
 .character-img {
-	width: 50%;
+	width: 40%;
+	margin-inline: auto;
 }
 
 .random {
@@ -266,10 +329,10 @@ h3 {
 	box-shadow: 0px 0px 20px #81130c;;
 }
 
-.random-button img {
+.random-button svg {
 	transition: transform 250ms;
 }
-.random-button:is(:hover) > img {
+.random-button:is(:hover) > svg {
 	transform: rotate(135deg);
 }
 
@@ -283,6 +346,22 @@ h3 {
 
 #eventMap {
 	height: 350px;
+}
+
+.event-description {
+	min-height: 140px;
+	/* display: -webkit-box !important; 
+	-webkit-line-clamp: 3 !important; 
+	-webkit-line-orient: vertical !important; 
+	overflow: hidden !important; */
+}
+
+.kick-btn {
+	padding: 3px 6px;
+	border-radius: 50%;
+	border: none;
+	color: white;
+	font-weight: bold;
 }
 
 /* Footer */

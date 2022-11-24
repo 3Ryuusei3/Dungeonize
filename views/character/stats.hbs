@@ -1,11 +1,12 @@
 <div class="container my-5">
-    <h1></h1>
     <div class="row d-flex justify-content-center gap-3">
-        <form class="d-flex col-md-9 flex-wrap justify-content-center gap-3" action="/characters/create/stats/{{character_id}}" method="POST" >
-            <div class="col-sm-3 card flex-column align-items-center" style="width: 18rem;">
+    <h1 class="col-md-9 mt-3 mb-3 page-title">Create your stats</h1>
+        <form class="d-flex col-md-9 flex-column justify-content-center " action="/characters/create/stats/{{character_id}}" method="POST" >
+            <div class="d-flex col flex-wrap justify-content-center gap-3">
+                <div class="col-sm-3 card flex-column align-items-center" style="width: 18rem;">
                 <input id="strength-value" readonly class="m-4 random stat-input" type="text" value="0" name="strength">
                 <div id="strength-button" class="random-button">
-                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#ffedde"/></svg></div>
                 <div class="card-body mt-3">
                     <h5 class="card-title text-center">Strength</h5>
                     <p class="card-text text-center"><em><small>Strength measures bodily power, athletic Training, and the extent to which you can exert raw physical force.</small></em></p>
@@ -14,7 +15,7 @@
             <div class=" col-sm-3 card flex-column align-items-center" style="width: 18rem;">
                 <input id="dexterity-value" readonly class="m-4 random stat-input" type="text" value="0" name="dexterity">
                 <div id="dexterity-button" class="random-button">
-                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#ffedde"/></svg></div>
                 <div class="card-body mt-3">
                     <h5 class="card-title text-center">Dexterity</h5>
                     <p class="card-text text-center"><em><small>Dexterity measures agility, reflexes, and balance.</small></em></p>
@@ -23,7 +24,7 @@
             <div class="col-sm-3 card flex-column align-items-center" style="width: 18rem;">
                 <input id="constitution-value" readonly class="m-4 random stat-input" type="text" value="0" name="constitution">
                 <div id="constitution-button" class="random-button">
-                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#ffedde"/></svg></div>
                 <div class="card-body mt-3">
                     <h5 class="card-title text-center">Constitution</h5>
                     <p class="card-text text-center"><em><small>Constitution measures health, stamina, and vital force.</small></em></p>
@@ -32,7 +33,7 @@
             <div class=" col-sm-3 card flex-column align-items-center" style="width: 18rem;">
                 <input id="intelligence-value" readonly class="m-4 random stat-input" type="text" value="0" name="intelligence">
                 <div id="intelligence-button" class="random-button">
-                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#ffedde"/></svg></div>
                 <div class="card-body mt-3">
                     <h5 class="card-title text-center">Intelligence</h5>
                     <p class="card-text text-center"><em><small>Intelligence measures mental acuity, accuracy of recall, and the ability to reason.</small></em></p>
@@ -41,7 +42,7 @@
             <div class=" col-sm-3 card flex-column align-items-center" style="width: 18rem;">
                 <input id="wisdom-value" readonly class="m-4 random stat-input" type="text" value="0" name="wisdom">
                 <div id="wisdom-button" class="random-button">
-                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#ffedde"/></svg></div>
                 <div class="card-body mt-3">
                     <h5 class="card-title text-center">Wisdom</h5>
                     <p class="card-text text-center"><em><small>Wisdom reflects how attuned you are to the world around you and represents perceptiveness and intuition.</small></em></p>
@@ -50,13 +51,14 @@
             <div class="col-sm-3 card flex-column align-items-center" style="width: 18rem;">
                 <input id="charisma-value" readonly class="m-4 random stat-input" type="text" value="0" name="charisma">
                 <div id="charisma-button" class="random-button">
-                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#ffedde"/></svg></div>
                 <div class="card-body mt-3">
                     <h5 class="card-title text-center">Charisma</h5>
-                    <p class="card-text text-center"><em><small>Charisma measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding Personality.</small></em></p>
+                    <p class="card-text text-center"><em><small>Charisma measures your ability to interact effectively with others.</small></em></p>
                 </div>
             </div>
-            <button type="submit" class="col-sm-3 btn btn-dark">Next step</button>
+            </div>
+            <button type="submit" class="d-grid mt-4 btn btn-dark" style="max-width: max-content; margin-inline: auto">Next step</button>
 
         </form>
         

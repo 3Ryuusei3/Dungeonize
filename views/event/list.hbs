@@ -1,33 +1,37 @@
 <div class="container my-5">
-	<h1 class="my-4">Events</h1>
-	<div class="row d-flex justify-content-center gap-4">
+	<h1 class="my-4 page-title">Events</h1>
+	<div class="row d-flex justify-content-center gap-4" style="position: relative;">
 		
 		{{#each events}}
-		<div class="card justify-content-between col-lg-3 col-md-4 px-3 gap-2" style="width: 24rem">
-			<h2 class="card-title my-3 fw-bolder"><a href="/events/details/{{_id}}">{{title}}</a></h2>
-			<p class="place"><strong>{{place}}</strong></p>
-			<p class="text-subtitle fs ps-3" style="min-height: 150px;"><em><small>{{description}}</small></em></p>
-			<p class="text-start"><strong>{{formattedDates}}</strong></p>
-			<p class="text-start"><strong>Number max of Participant : {{maxParticipant}}</strong></p>
-			<div class="mb-3">
+		<div class="card justify-content-between col-lg-3 col-md-4 gap-2 p-0" style="width: 24rem; overflow:hidden;">
+			<div class="card-header mb-3">
+				<h2 class="card-title pt-2 text-center"><a href="/events/details/{{_id}}" class="details-link ">{{title}}</a></h2>
+  			</div>
+			<img class="event-bg-img card-img-top" style="z-index: 2;" src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669320594/magic-icon_ctr6sh.png" alt="Character picture" />
+			<p class="place mx-3" style="z-index: 2;"><strong>{{place}}</strong></p>
+			<p class="event-description text-subtitle fs ps-3 mb-1 mx-3" style="z-index: 2;"><em><small>{{description}}</small></em></p>
+			<p class="text-start mb-1 mx-3" style="z-index: 2;"><strong>{{formattedDates}}</strong></p>
+			<p class="text-start mb-1 mx-3" style="z-index: 2;"><strong>Number max of Participant : {{maxParticipant}}</strong></p>
+			
 		{{#if isOwner}}
+			<div class="mb-3"></div>
 				{{#if ../isDM}}
-				<a class="justify-self-end btn btn-secondary" href="/events/edit/{{_id}}">Edit event</a>
-				<form action="/events/delete/{{_id}}" method="POST" class="btn btn-danger m-0">
+				<a class="justify-self-end btn btn-secondary mx-3" href="/events/edit/{{_id}}" style="z-index: 2;">Edit event</a>
+				<form action="/events/delete/{{_id}}" method="POST" class="btn btn-danger mx-3" style="z-index: 2;">
 					<input type="submit" value="Delete event" class="btn btn-danger p-0" />
 				</form>
 				{{/if}}
 				{{/if}}
 				{{#if ../isAdmin}}
-				<a class="justify-self-end btn btn-secondary" href="/events/edit/{{_id}}">Edit event</a>
-				<form action="/events/delete/{{_id}}" method="POST" class="btn btn-danger m-0">
+				<a class="justify-self-end btn btn-secondary mx-3" href="/events/edit/{{_id}}" style="z-index: 2;">Edit event</a>
+				<form action="/events/delete/{{_id}}" method="POST" class="btn btn-danger mx-3" style="z-index: 2;">
 					<input type="submit" value="Delete event" class="btn btn-danger p-0" />
 				</form>
-				{{/if}}
 			</div>
-			{{#if ../isPlayer}}
+		{{/if}}
+		{{#if ../isPlayer}}
 
-			<a class="justify-self-end btn btn-success mb-4" href="/events/details/{{_id}}">Join event</a>
+			<a class="justify-self-end btn btn-success mt-2 mb-4 mx-3" href="/events/details/{{_id}}" style="z-index: 2;">Join event</a>
 
 			{{/if}}
 		</div>

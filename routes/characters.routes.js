@@ -109,7 +109,7 @@ router.post("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
 })
 
 // Delete Character
-router.post("/characters/delete/:character_id", isLoggedIn, (req, res) => {
+router.post("/characters/delete/:character_id", isLoggedIn, (req, res, next) => {
 	const { character_id } = req.params
 
 	Character.findByIdAndDelete(character_id)

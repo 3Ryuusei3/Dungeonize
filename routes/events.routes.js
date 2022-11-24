@@ -28,18 +28,11 @@ router.get("/events", isLoggedIn, (req, res, next) => {
 
 // Create Events
 router.get("/events/create", isLoggedIn, checkRoles("DM", "Admin"), (req, res, next) => {
-	Event.find()
-		.select({ title: 1, place: 1, description: 1, date: 1, maxParticipant: 1, lat: 1, lng: 1 })
-
-		.then(() => {
-			res.render("event/create")
-		})
-		.catch((error) => next(error))
+	res.render("event/create")
 })
 
 router.post("/events/create", isLoggedIn, checkRoles("DM", "Admin"), (req, res, next) => {
-	const { title, description, lat, lng, date, post, place, maxParticipant, imageUrl } = req.body
-
+	const { title, description, lat, lng, date, place, maxParticipant, imageUrl } = req.body
 	const { _id: user } = req.session.currentUser
 
 	const location = {
@@ -47,9 +40,8 @@ router.post("/events/create", isLoggedIn, checkRoles("DM", "Admin"), (req, res, 
 		coordinates: [lat, lng],
 	}
 
-	Event.create({ title, description, location, date, user, place, maxParticipant, imageUrl }, { new: true })
-		.then((updatedUser) => {
-			req.session.currentUser = updatedUser
+	Event.create({ title, description, location, date, user, place, maxParticipant, imageUrl })
+		.then(() => {
 			res.redirect("/events")
 		})
 		.catch((error) => next(error))
@@ -104,9 +96,8 @@ router.post("/events/details/:events_id", checkRoles("Player"), isLoggedIn, (req
 	const { events_id } = req.params
 	const { characters } = req.body
 	Event
-		.findByIdAndUpdate(events_id, { $addToSet: { characters: characters } }, { new: true })
-		.then((updatedUser) => {
-			req.session.currentUser = updatedUser
+		.findByIdAndUpdate(events_id, { $addToSet: { characters: characters } })
+		.then(() => {
 			res.redirect(`/events/details/${events_id}`)
 		})
 		.catch((error) => next(error))
@@ -148,5 +139,17 @@ router.post("/events/characters/delete/:event_id/:character_id", isLoggedIn, (re
 
 		.catch((error) => next(error))
 })
+
+// Delete Event
+router.post("/events/delete/:events_id", isLoggedIn, (req, res) => {
+	const { events_id } = req.params;
+
+	Event.findByIdAndDelete(events_id)
+		.then(() => res.redirect("/events"))
+		.catch((error) => { next(error) });
+});
+
+
+
 
 module.exports = router

@@ -1,6 +1,13 @@
 /* Fonts */
 
 @font-face {
+	font-family: "vanderickregular";
+	src: url("./../font/vanderick-webfont.woff2") format("woff2"), url("./../font/vanderick-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
     font-family: 'bookmaniaregular';
     src: url('./../font/bookmania_regular-webfont.woff2') format('woff2'), url('./../font/bookmania_regular-webfont.woff') format('woff');
     font-weight: normal;
@@ -51,10 +58,10 @@
 }
 
 .charactername {
-  font-family: bookmaniasemibold_italic;
+  font-family: vanderickregular;
   padding-left: 12px;
   padding-top: 8px;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -144,7 +151,7 @@ form.charsheet header section.charname {
   border-right: 0;
   border-radius: 10px 0 0 10px;
   padding: 5px 0;
-  background-color: #eee;
+  background-color: rgba(234, 182, 182, 0.4);
   width: 30%;
   display: flex;
   flex-direction: column-reverse;
@@ -159,10 +166,12 @@ form.charsheet header section.charname input {
 }
 form.charsheet header section.charname label {
   padding-left: 1em;
+  padding-bottom: .5em
 }
 form.charsheet header section.misc {
   width: 70%;
   border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.901);
   border-radius: 10px;
   padding-left: 1em;
   padding-right: 1em;
@@ -219,7 +228,7 @@ form.charsheet main > section section.attributes {
 }
 form.charsheet main > section section.attributes div.scores {
   width: 100%;
-  background-color: #bbb;
+  background-color: rgba(234, 182, 182, 0.4);
   border-radius: 10px;
   padding-bottom: 5px;
 }
@@ -358,7 +367,7 @@ form.charsheet main > section div.otherprofs textarea {
   height: 26em;
 }
 form.charsheet main section.combat {
-  background-color: #eee;
+  background-color: rgba(234, 182, 182, 0.4);
   display: flex;
   flex-wrap: wrap;
   border-radius: 10px;
@@ -636,7 +645,7 @@ form.charsheet main section.equipment > div > textarea {
 }
 form.charsheet main section.flavor {
   padding: 10px;
-  background: #bbb;
+  background-color: rgba(234, 182, 182, 0.4);
   border-radius: 10px;
 }
 form.charsheet main section.flavor div {
@@ -669,6 +678,7 @@ form.charsheet main section.features-section {
   padding: 10px;
 }
 form.charsheet main section.features-section div {
+  background-color: rgba(255, 255, 255, 0.901);
   padding: 10px;
   border: 1px solid black;
   border-radius: 10px;
@@ -677,6 +687,7 @@ form.charsheet main section.features-section div {
 }
 form.charsheet main section.features-section div label {
   text-align: center;
+  font-size: 10px;
 }
 form.charsheet main section.features-section div textarea {
   border: 0;

@@ -23,6 +23,7 @@ function genRandomNum() {
 function createValue(btn, val) {
     btn.addEventListener("click", () => {
         if (val.value === "0") {
+            val.style.color = "#81130c"
             val.value = genRandomNum()
         }
     })
