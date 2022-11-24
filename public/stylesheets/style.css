@@ -231,6 +231,54 @@ h3 {
 	align-self: flex-start;
 }
 
+.black {
+	background-color: black;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.character-img {
+	width: 50%;
+}
+
+.random {
+	font-size: 60px;
+	color: rgb(165, 165, 165);
+}
+
+.random-button {
+	width: 3rem;
+	height: 3rem;
+	background: #81130c;
+	border-radius: 50%;
+	grid-row: 2/3;
+	grid-column: 1/2;
+	place-self: end center;
+	transition: box-shadow 250ms;
+	cursor: pointer;
+	display: grid;
+	place-items: center;
+	margin-inline: auto;
+}
+
+.random-button:is(:hover) {
+	box-shadow: 0px 0px 20px #81130c;;
+}
+
+.random-button img {
+	transition: transform 250ms;
+}
+.random-button:is(:hover) > img {
+	transform: rotate(135deg);
+}
+
+.stat-input {
+	width: 80px;
+	border: none;
+	text-align: center;
+}
+
 /* Events */
 
 #eventMap {

@@ -3,15 +3,11 @@
 	<div class="row d-flex justify-content-center gap-4">
 		{{#each characters}}
 		<div class="card justify-content-between col-lg-3 col-md-4 p-3 gap-2" style="width: 18rem">
-			<img class="movie-img card-img-top" src="{{imageUrl}}" alt="Character picture" />
+			<img class="character-img card-img-top" src="{{imageUrl}}" alt="Character picture" />
 			<div>
-				<h2 class="card-title mt-2 mb-5">{{charactername}}</h2>
-				{{!-- <p><em>{{plot}}</em></p> --}}
+				<h2 class="card-title mt-2 mb-5"><a href="/characters/details/{{_id}}">{{charactername}}</a></h2>
 				<p class="text-end class">{{classes}}</p>
 				<p class="text-end race">{{race}}</p>
-
-
-
 			</div>
 			<a class="justify-self-end btn btn-secondary mt-5 mb-2" href="/characters/edit/{{_id}}">Edit character</a>
 			<form action="/characters/delete/{{_id}}" method="POST" class="btn btn-danger">
