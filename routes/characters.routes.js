@@ -4,6 +4,7 @@ const { isLoggedIn } = require("../middleware/route.guard")
 
 const ApiService = require("./../services/character.service")
 const characterService = new ApiService()
+const uploader = require('./../config/uploader.config')
 
 const User = require("./../models/User.model")
 const Character = require("./../models/Character.model")
@@ -14,12 +15,16 @@ router.get("/characters", isLoggedIn, (req, res, next) => {
 
 	const promises = [
 		User.findById(req.session.currentUser._id),
-		Character.find({ user: req.session.currentUser._id }).select({ charactername: 1, classes: 1, race: 1 })
+		Character.find({ user: req.session.currentUser._id }).select({ charactername: 1, classes: 1, race: 1, imageUrl: 1 })
 	]
 
 	Promise
 		.all(promises)
-		.then(([user, characters]) => res.render("character/list", { user, characters }))
+		.then(([user, characters]) => {
+			console.log({ user, characters })
+			res.render("character/list", { user, characters })
+		})
+
 		.catch((error) => next(error))
 })
 
@@ -48,12 +53,12 @@ router.get("/characters/create", isLoggedIn, (req, res, next) => {
 		.catch((error) => next(error))
 })
 
-router.post("/characters/create", isLoggedIn, (req, res, next) => {
+router.post("/characters/create", isLoggedIn, uploader.single('imageField'), (req, res, next) => {
 
 	let userId = req.session.currentUser._id
-	const { charactername, classes, race, imageUrl, user } = req.body
+	const { charactername, classes, race, user } = req.body
 
-	Character.create({ charactername, classes, race, imageUrl, user: userId })
+	Character.create({ charactername, classes, race, imageUrl: req.file.path, user: userId })
 		.then((character) => {
 			res.redirect(`/characters/create/class/${character._id}`)
 		})

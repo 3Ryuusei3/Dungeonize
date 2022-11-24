@@ -6,18 +6,13 @@
 
 			<h1 class="my-5">New character</h1>
 
-			<form action="/characters/create" method="POST">
+			<form action="/characters/create" method="POST" enctype="multipart/form-data">
 
 				<div class="mb-3 row">
 					<div class="col">
 						<label for="charactername" class="form-label">Character name</label>
-						<input
-							type="text"
-							class="form-control"
-							id="charactername"
-							name="charactername"
-							placeholder="Thunderer the sorcerer"
-						/>
+						<input type="text" class="form-control" id="charactername" name="charactername"
+							placeholder="Thunderer the sorcerer" />
 						<div class="form-text">Required.</div>
 					</div>
 
@@ -27,7 +22,7 @@
 					<select id="classes" class="form-select" aria-label="Default select example" name="classes">
 						<option selected>Select a class</option>
 						{{#each allClasses}}
-							<option value="{{name}}">{{name}}</option>
+						<option value="{{name}}">{{name}}</option>
 						{{/each}}
 					</select>
 				</div>
@@ -37,15 +32,15 @@
 					<select id="race" class="form-select" aria-label="Default select example" name="race">
 						<option selected>Select a race</option>
 						{{#each allRaces}}
-							<option value="{{name}}">{{name}}</option>
+						<option value="{{name}}">{{name}}</option>
 						{{/each}}
 					</select>
 				</div>
-				{{! <div class="mb-3">
-					<label for="imageInput" class="form-label">Imagen</label>
-					<input type="url" class="form-control" id="imageInput" name="imageUrl" />
-					<div class="form-text">Introduce la URL a la imagen que desees de perfil.</div>
-				</div> }}
+				<div class="mb-3">
+					<label for="imageUrl" class="form-label">Imagen</label>
+					<input type="file" class="form-control" id="imageUrl" name="imageField" />
+					<div class="form-text">Select your image for your character.</div>
+				</div>
 				<div class="mt-5 d-grid gap-2">
 					<button type="submit" class="btn btn-dark block">Next step</button>
 				</div>

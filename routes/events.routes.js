@@ -11,9 +11,9 @@ router.get("/events", isLoggedIn, (req, res, next) => {
 	Event.find()
 		.select({ title: 1, place: 1, description: 1, date: 1, maxParticipant: 1, user: 1 })
 		.then((events) => {
-			events.forEach(elm => {	
+			events.forEach(elm => {
 				elm.formattedDates = formatDate(elm.date)
-				elm.isOwner =  req.session.currentUser._id === elm.user._id.toString()
+				elm.isOwner = req.session.currentUser._id === elm.user._id.toString()
 			})
 			res.render("event/list", {
 				events,
@@ -38,7 +38,7 @@ router.get("/events/create", isLoggedIn, checkRoles("DM", "Admin"), (req, res, n
 })
 
 router.post("/events/create", isLoggedIn, checkRoles("DM", "Admin"), (req, res, next) => {
-	const { title, description, lat, lng, date, post, place, maxParticipant } = req.body
+	const { title, description, lat, lng, date, post, place, maxParticipant, imageUrl } = req.body
 
 	const { _id: user } = req.session.currentUser
 
@@ -47,7 +47,7 @@ router.post("/events/create", isLoggedIn, checkRoles("DM", "Admin"), (req, res, 
 		coordinates: [lat, lng],
 	}
 
-	Event.create({ title, description, location, date, user, place, maxParticipant })
+	Event.create({ title, description, location, date, user, place, maxParticipant, imageUrl })
 		.then(() => {
 			res.redirect("/events")
 		})
@@ -68,16 +68,16 @@ router.get("/events/details/:events_id", isLoggedIn, (req, res, next) => {
 	Promise
 		.all(promises)
 		.then(([characters, event]) => {
-		
+
 			event.formattedDate = formatDate(event.date)
-			
+
 			let isJoined
 			if (event.characters.length > 0) {
 				isJoined = event.characters[0].user.toString() === req.session.currentUser._id   // map
 			} else {
 				isJoined = false
 			}
-			
+
 			res.render("event/details", {
 				characters,
 				event,

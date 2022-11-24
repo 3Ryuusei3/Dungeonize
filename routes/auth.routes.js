@@ -5,18 +5,20 @@ const User = require("../models/User.model")
 const saltRounds = 10
 const { isLoggedOut } = require("../middleware/route.guard")
 const app = require("../app")
+const uploader = require('./../config/uploader.config')
+
 
 // Signup
 router.get("/signup", isLoggedOut, (req, res, next) => res.render("auth/signup"))
 
-router.post("/signup", isLoggedOut, (req, res, next) => {
+router.post("/signup", isLoggedOut, uploader.single('imageField'), (req, res, next) => {
 	const { email, username, password, description } = req.body
 
 	if (password.length > 9) {
 		bcrypt
 			.genSalt(saltRounds)
 			.then((salt) => bcrypt.hash(password, salt))
-			.then((hashedPassword) => User.create({ username, email, description, password: hashedPassword }))
+			.then((hashedPassword) => User.create({ username, email, description, password: hashedPassword, imageUrl: req.file.path }))
 			.then(() => res.redirect("/login"))
 			.catch((error) => next(error))
 	} else {

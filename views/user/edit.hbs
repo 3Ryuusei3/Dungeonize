@@ -5,7 +5,7 @@
 
 			<h1>Edit {{username}}</h1>
 
-			<form action="/user/details/edit/{{_id}}" method="POST">
+			<form action="/user/details/edit/{{_id}}" method="POST" enctype="multipart/form-data">
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
 					<input type="text" class="form-control" id="username" name="username" value="{{username}}" />
@@ -16,12 +16,13 @@
 				</div>
 				<div class="mb-3">
 					<label for="description" class="form-label">Description</label>
-					<textarea class="form-control" id="description" name="description" rows="5">{{description}}</textarea>
+					<textarea class="form-control" id="description" name="description"
+						rows="5">{{description}}</textarea>
 				</div>
-				{{!-- <div class="mb-3">
-					<label for="image" class="form-label">Image</label>
-					<input type="text" class="form-control" id="image" name="image" value="{{imageUrl}}" />
-				</div> --}}
+				<div class="mb-3">
+					<label for="imageUrl" class="form-label">Image</label>
+					<input type="file" class="form-control" id="imageUrl" name="imageField" value="{{imageUrl}}" />
+				</div>
 				<div class="d-grid">
 					<button type="submit" class="btn btn-success">Update</button>
 				</div>
@@ -32,6 +33,6 @@
 	</div>
 
 	{{#if isAdmin}}
-		<a href="/students" class="btn btn-dark d-grid mt-5">User list</a>
+	<a href="/students" class="btn btn-dark d-grid mt-5">User list</a>
 	{{/if}}
 </div>

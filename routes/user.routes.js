@@ -1,6 +1,7 @@
 const express = require("express")
 const { isLoggedIn } = require("../middleware/route.guard")
 const router = express.Router()
+const uploader = require('./../config/uploader.config')
 
 const User = require("../models/User.model")
 
@@ -8,7 +9,7 @@ const User = require("../models/User.model")
 router.get("/user", isLoggedIn, (req, res, next) => {
 	User.findById(req.session.currentUser._id)
 		.select({ username: 1, imageUrl: 1, role: 1, email: 1, description: 1, })
-		.then((user) => res.render("user/profile", { 
+		.then((user) => res.render("user/profile", {
 			user,
 			isTheUser: true
 		}))
@@ -35,19 +36,19 @@ router.get("/user/details/edit/:user_id", isLoggedIn, (req, res, next) => {
 	const { user_id } = req.params
 
 	User.findById(user_id)
-		.select({ username: 1, email: 1, description: 1, })
+		.select({ username: 1, email: 1, description: 1, imageUrl: 1 })
 		.then((user) => {
 			res.render("user/edit", user)
 		})
 		.catch((error) => next(error))
 })
 
-router.post("/user/details/edit/:user_id", isLoggedIn, (req, res, next) => {
+router.post("/user/details/edit/:user_id", isLoggedIn, uploader.single('imageField'), (req, res, next) => {
 	const { user_id } = req.params
 	const { email, username, password, description } = req.body
 
-	User.findByIdAndUpdate(user_id, { email, username, password, description })
-		.select({ username: 1, email: 1, description: 1, password : 1 })
+	User.findByIdAndUpdate(user_id, { email, username, password, description, imageUrl: req.file.path })
+		.select({ username: 1, email: 1, description: 1, password: 1, imageUrl: 1 })
 		.then(() => {
 			res.redirect(`/user/details/${user_id}`)
 		})
