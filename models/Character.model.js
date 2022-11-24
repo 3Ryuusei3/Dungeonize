@@ -63,18 +63,38 @@ const characterSchema = new mongoose.Schema(
 		},
 		background: {
 			personality: {
-				type: String,
+				type: String
 			},
 			ideals: {
-				type: String,
+				type: String
 			},
 			bonds: {
-				type: String,
+				type: String
 			},
 			flaws: {
-				type: String,
+				type: String
 			},
-		}
+		},
+		stats: {
+			strength: {
+				type: String
+			},
+			dexterity: {
+				type: String
+			},
+			constitution: {
+				type: String
+			},
+			wisdom: {
+				type: String
+			},
+			intelligence: {
+				type: String
+			},
+			charisma: {
+				type: String
+			},
+		},
 	},
 	{
 		timestamps: true,
