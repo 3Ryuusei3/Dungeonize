@@ -136,10 +136,5 @@
 
 ## BONUS
 
-- [ ] Crear BBDD para que el jugador pueda investigar antes de hacer el personaje
 - [ ] Bloquear a jugadores de eventos (???)
-- [ ] Campaña
-- [ ] Jugadores pueden intercambiar objetos
-- [ ] ¿Modo oscuro?
 - [ ] Responsiveness
-- [ ] Tienda

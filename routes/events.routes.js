@@ -71,12 +71,16 @@ router.get("/events/details/:events_id", isLoggedIn, (req, res, next) => {
 		
 			event.formattedDate = formatDate(event.date)
 			
-			let isJoined
-			if (event.characters.length > 0) {
-				isJoined = event.characters[0].user.toString() === req.session.currentUser._id   // map
-			} else {
-				isJoined = false
-			}
+			let isJoined = false;
+			
+			/* if (event.characters.length > 0) {
+				// isJoined = event.characters[0].user.toString() === req.session.currentUser._id   // map
+				let checkIfJoined = event.characters.filter(elm =>  req.session.currentUser.characters.includes(elm));
+				if (checkIfJoined.length === 0) {
+					isJoined = true
+				}
+			} */
+			/* console.log(req.session.currentUser) */
 			
 			res.render("event/details", {
 				characters,
@@ -105,16 +109,15 @@ router.post("/events/details/:events_id", checkRoles("Player"), isLoggedIn, (req
 	const { events_id } = req.params
 	const { characters } = req.body
 	Event
-		.findByIdAndUpdate(events_id, { $push: { characters: characters } })
+		.findByIdAndUpdate(events_id, { $addToSet: { characters: characters } })
 		.then(() => {
 			res.redirect(`/events/details/${events_id}`)
 		})
 		.catch((error) => next(error))
-
 })
 
 
-// Edit Character
+// Join event with Character
 router.get("/events/edit/:events_id", checkRoles("DM", "Admin"), isLoggedIn, (req, res, next) => {
 	const { events_id } = req.params
 
@@ -136,12 +139,15 @@ router.post("/events/edit/:events_id", checkRoles("DM", "Admin"), isLoggedIn, (r
 		.catch((error) => next(error))
 })
 
-// Delete Character
-router.post("/events/delete/:events_id", isLoggedIn, (req, res) => {
-	const { events_id } = req.params
+// Delete Character from event
+router.post("/events/characters/delete/:event_id/:character_id", isLoggedIn, (req, res, next) => {
+	const { character_id, event_id } = req.params
 
-	Event.findByIdAndDelete(events_id)
-		.then(() => res.redirect("/events"))
+	Event.findByIdAndUpdate(event_id, {$pull: {characters: character_id }}, {new: true})
+		.then(() => {
+			console.log(character_id)
+			res.redirect("/events")
+		})
 		.catch((error) => next(error))
 })
 

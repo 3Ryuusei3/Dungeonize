@@ -1,0 +1,146 @@
+<div class="container mb-5">
+
+  <h1 class="my-5">Character sheet</h1>
+
+  <form class="charsheet mb-5">
+    <header>
+        <section class="charname">
+          <label for="charname">Character Name</label><p class="field-header charactername mb-2">{{charactername}}</p>
+        </section>
+        <section class="misc">
+          <ul>
+            <li>
+              <label for="classlevel">Class</label><p class="field-header m-0"><em>{{classes}}</em></p>
+            </li>
+            <li>
+              <label for="background">Background</label><p class="field-header m-0"><em>Acolyte</em>
+            </li>
+            <li>
+              <label for="playername">Level</label><p class="field-header m-0"><em>1</em>
+            </li>
+            <li>
+              <label for="race">Race</label><p class="field-header m-0"><em>{{race}}</em>
+            </li>
+            <li>
+              <label for="alignment">Alignment</label><p class="field-header m-0"><em>{{raceInfo.alignment}}</em>
+            </li>
+            <li>
+              <label for="experiencepoints">Experience Points</label><p class="field-header m-0"><em>100</em></p>
+            </li>
+          </ul>
+        </section>
+    </header>
+    <main>
+      <section>
+        <section class="attributes">
+          <div class="scores">
+            <ul>
+              <li class="mt-3 mb-4">
+                <div class="score">
+                  <label for="Strengthscore">Strength</label><input name="Strengthscore" placeholder="10" class="stat"/>
+                </div>
+                <div class="modifier">
+                  <input name="Strengthmod" placeholder="+0" class="statmod"/>
+                </div>
+              </li>
+              <li class="mb-4">
+                <div class="score">
+                  <label for="Dexterityscore">Dexterity</label><input name="Dexterityscore" placeholder="10" class="stat"/>
+                </div>
+                <div class="modifier">
+                  <input name="Dexteritymod" placeholder="+0" class=statmod/>
+                </div>
+              </li>
+              <li class="mb-4">
+                <div class="score">
+                  <label for="Constitutionscore">Constitution</label><input name="Constitutionscore" placeholder="10" class="stat"/>
+                </div>
+                <div class="modifier">
+                  <input name="Constitutionmod" placeholder="+0" class="statmod"/>
+                </div>
+              </li>
+              <li class="mb-4">
+                <div class="score">
+                  <label for="Wisdomscore">Wisdom</label><input name="Wisdomscore" placeholder="10" class="stat"/>
+                </div>
+                <div class="modifier">
+                  <input name="Wisdommod" placeholder="+0" />
+                </div>
+              </li>
+              <li class="mb-4">
+                <div class="score">
+                  <label for="Intelligencescore">Intelligence</label><input name="Intelligencescore" placeholder="10" class="stat"/>
+                </div>
+                <div class="modifier">
+                  <input name="Intelligencemod" placeholder="+0" class="statmod"/>
+                </div>
+              </li>
+              <li class="mb-4">
+                <div class="score">
+                  <label for="Charismascore">Charisma</label><input name="Charismascore" placeholder="10" class="stat"/>
+                </div>
+                <div class="modifier">
+                  <input name="Charismamod" placeholder="+0" class="statmod"/>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </section>
+      <section>
+        <section class="combat">
+          <div class="armorclass">
+            <div>
+              <label for="ac">Armor</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="10"/>
+            </div>
+          </div>
+          <div class="initiative">
+            <div>
+              <label for="initiative">HP</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{classInfo.health}}"/>
+            </div>
+          </div>
+          <div class="speed">
+            <div>
+              <label for="speed">Speed</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{raceInfo.speed}}"/>
+            </div>
+          </div>
+          <div class="hp my-2">
+            <div class="regular">
+              <div class="current">
+                <label for="currenthp">Current equipment</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{classInfo.equipment}}"/>
+              </div>
+            </div>
+        </section>
+      <section class="features-section">
+          <div>
+            <label for="features">Features &amp; Traits</label>
+            <p class="field-text textarea textarea-bg" name="personality">
+              <strong >Class Trait:</strong> <span>{{classInfo.traits}}</span><br><br>
+              <strong >Race Trait:</strong> <span>{{raceInfo.traits}}</span><br><br>
+              <strong >Age description:</strong> <span>{{raceInfo.ageDescription}}</span><br><br>
+              <strong >Size description:</strong> <span>{{raceInfo.sizeDescription}}</span><br><br>
+              <strong >Languages:</strong> <span>{{raceInfo.languages}}</span><br>
+            </p>
+        </section>
+      </section>
+      <section>
+        <section class="flavor">
+          <div class="personality">
+            <label for="personality">Personality</label><p class="field-text textarea" name="personality">{{background.personality}}</p>
+          </div>
+          <div class="ideals">
+            <label for="ideals">Ideals</label><p class="field-text textarea" name="ideals"> {{background.ideals}}</p>
+          </div>
+          <div class="bonds">
+            <label for="bonds">Bonds</label><p class="field-text textarea" name="bonds">{{background.bonds}}</p>
+          </div>
+          <div class="flaws">
+            <label for="flaws">Flaws</label><p class="field-text textarea" name="flaws">{{background.flaws}}</p>
+          </div>
+        </section>
+      </section>
+    </main>
+  </form>
+</div>
+
+<script src="/js/charactersheet.js"></script>
