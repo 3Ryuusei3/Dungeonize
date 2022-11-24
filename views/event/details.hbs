@@ -16,16 +16,25 @@
 
 			<p class="pb-2"><strong class="text-danger">List of participants: </strong></p>
 			<div class="text-black">
-				{{#each event.characters}}
-				<ul><li>{{charactername}} {{#if ../isDM}}
+			{{#if isPlayer}}
+			{{#each event.characters}}
+			<ul>
+				<li>{{charactername}} </li>
+			</ul>
+			{{/each}}
+			{{/if}}
 
-			<form action="/events/characters/delete/{{_id}}" method="POST" style="display: inline">
-				<input type="submit" value="Kick character" class="btn btn-danger" />
+			{{#if isDM}}
+			{{#each event.characters}}
+			<ul>
+			<form action="/events/characters/delete/{{../event._id}}/{{_id}}" method="POST" style="display: inline">
+				<li>{{charactername}} 
+					<button type="submit" value="{{_id}}" class="btn btn-danger" name="{{charactername}}">Kick character</button>
+				</li>
 			</form>
-			</li>
-
-			{{/if}}</ul>
-				{{/each}}
+			</ul>
+			{{/each}}
+			{{/if}}
 			</div>
 
 		

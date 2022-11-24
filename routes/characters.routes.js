@@ -56,11 +56,30 @@ router.get("/characters/create", isLoggedIn, (req, res, next) => {
 router.post("/characters/create", isLoggedIn, uploader.single('imageField'), (req, res, next) => {
 
 	let userId = req.session.currentUser._id
-	const { charactername, classes, race, user } = req.body
+	let characterId
+	const { charactername, classes, race, imageUrl, user } = req.body
 
 	Character.create({ charactername, classes, race, imageUrl: req.file.path, user: userId })
 		.then((character) => {
-			res.redirect(`/characters/create/class/${character._id}`)
+			characterId = character._id
+			console.log(character)
+			return User.findByIdAndUpdate(req.session.currentUser._id, { $push: { characters: character._id } })
+		})
+		.then(() => {
+			res.redirect(`/characters/create/class/${characterId}`)
+		})
+		.catch((error) => next(error))
+
+})
+
+// Character details
+router.get("/characters/details/:character_id", (req, res, next) => {
+	const { character_id } = req.params;
+
+	Character
+		.findById(character_id)
+		.then(character => {
+			res.render("character/details", character)
 		})
 		.catch((error) => next(error))
 })

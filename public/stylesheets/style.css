@@ -2,12 +2,39 @@
 /* GENERAL STYLING */
 /*  */
 
+/* Fonts */
+
 @font-face {
 	font-family: "vanderickregular";
 	src: url("./../font/vanderick-webfont.woff2") format("woff2"), url("./../font/vanderick-webfont.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
+
+@font-face {
+    font-family: 'bookmaniaregular';
+    src: url('./../font/bookmania_regular-webfont.woff2') format('woff2'), url('./../font/bookmania_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bookmaniaitalic';
+    src: url('./../font/bookmania_italic-webfont.woff2') format('woff2'),
+         url('./../font/bookmania_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bookmanialight_italic';
+    src: url('./../font/bookmania_light_italic-webfont.woff2') format('woff2'),
+         url('./../font/bookmania_light_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Utility classes */
 
 body {
 	min-height: 100vh;
@@ -157,6 +184,7 @@ h3 {
 }
 
 .quote {
+	font-family: bookmaniaitalic;
 	color: rgb(255, 255, 255);
 }
 
