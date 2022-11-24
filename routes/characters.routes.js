@@ -63,9 +63,10 @@ router.post("/characters/create", isLoggedIn, uploader.single('imageField'), (re
 		.then((character) => {
 			characterId = character._id
 			console.log(character)
-			return User.findByIdAndUpdate(req.session.currentUser._id, { $push: { characters: character._id } })
+			return User.findByIdAndUpdate(req.session.currentUser._id, { $push: { characters: character._id } }, { new: true })
 		})
-		.then(() => {
+        .then((updatedUser) => {
+            req.session.currentUser = updatedUser
 			res.redirect(`/characters/create/class/${characterId}`)
 		})
 		.catch((error) => next(error))
@@ -128,7 +129,7 @@ router.get("/characters/create/class/:character_id", isLoggedIn, (req, res, next
 		})
 		.then((data) => {
 			allTraits = data.results.map((elm) => elm)
-			return characterService.getClassInfo(characterClass)      ////promise all
+			return characterService.getClassInfo(characterClass)
 		})
 		.then((data) => {
 			const health = data.hit_die
@@ -202,11 +203,44 @@ router.post("/characters/create/race/:character_id", isLoggedIn, (req, res, next
 	Character
 		.findByIdAndUpdate(character_id, { raceInfo })
 		.then(() => {
-			res.redirect(`/characters/create/background/${character_id}`)
+			res.redirect(`/characters/create/stats/${character_id}`)
 		})
 		.catch((error) => next(error))
 })
 
+
+// Character stats
+router.get("/characters/create/stats/:character_id", isLoggedIn, (req, res, next) => {
+	const { character_id } = req.params
+
+	Character.findById(character_id)
+		.then(() => {
+			res.render("character/stats", {character_id})
+		})
+		.catch((error) => next(error))
+})
+
+
+router.post("/characters/create/stats/:character_id", isLoggedIn, (req, res, next) => {
+	const { strength, dexterity, constitution, wisdom, intelligence, charisma } = req.body
+	const { character_id } = req.params
+
+	const stats = {
+		strength: strength,
+		dexterity: dexterity,
+		constitution: constitution,
+		wisdom: wisdom,
+		intelligence: intelligence,
+		charisma: charisma,
+	}
+
+	Character
+		.findByIdAndUpdate(character_id, { stats })
+		.then(() => {
+			res.redirect(`/characters/create/background/${character_id}`)
+		})
+		.catch((error) => next(error))
+})
 
 
 // Create background

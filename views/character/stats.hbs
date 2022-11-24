@@ -1,0 +1,66 @@
+<div class="container my-5">
+    <h1></h1>
+    <div class="row d-flex justify-content-center gap-3">
+        <form class="d-flex col-md-9 flex-wrap justify-content-center gap-3" action="/characters/create/stats/{{character_id}}" method="POST" >
+            <div class="col-sm-3 card flex-column align-items-center" style="width: 18rem;">
+                <input id="strength-value" readonly class="m-4 random stat-input" type="text" value="0" name="strength">
+                <div id="strength-button" class="random-button">
+                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                <div class="card-body mt-3">
+                    <h5 class="card-title text-center">Strength</h5>
+                    <p class="card-text text-center"><em><small>Strength measures bodily power, athletic Training, and the extent to which you can exert raw physical force.</small></em></p>
+                </div>
+            </div>
+            <div class=" col-sm-3 card flex-column align-items-center" style="width: 18rem;">
+                <input id="dexterity-value" readonly class="m-4 random stat-input" type="text" value="0" name="dexterity">
+                <div id="dexterity-button" class="random-button">
+                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                <div class="card-body mt-3">
+                    <h5 class="card-title text-center">Dexterity</h5>
+                    <p class="card-text text-center"><em><small>Dexterity measures agility, reflexes, and balance.</small></em></p>
+                </div>
+            </div>
+            <div class="col-sm-3 card flex-column align-items-center" style="width: 18rem;">
+                <input id="constitution-value" readonly class="m-4 random stat-input" type="text" value="0" name="constitution">
+                <div id="constitution-button" class="random-button">
+                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                <div class="card-body mt-3">
+                    <h5 class="card-title text-center">Constitution</h5>
+                    <p class="card-text text-center"><em><small>Constitution measures health, stamina, and vital force.</small></em></p>
+                </div>
+            </div>
+            <div class=" col-sm-3 card flex-column align-items-center" style="width: 18rem;">
+                <input id="intelligence-value" readonly class="m-4 random stat-input" type="text" value="0" name="intelligence">
+                <div id="intelligence-button" class="random-button">
+                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                <div class="card-body mt-3">
+                    <h5 class="card-title text-center">Intelligence</h5>
+                    <p class="card-text text-center"><em><small>Intelligence measures mental acuity, accuracy of recall, and the ability to reason.</small></em></p>
+                </div>
+            </div>
+            <div class=" col-sm-3 card flex-column align-items-center" style="width: 18rem;">
+                <input id="wisdom-value" readonly class="m-4 random stat-input" type="text" value="0" name="wisdom">
+                <div id="wisdom-button" class="random-button">
+                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                <div class="card-body mt-3">
+                    <h5 class="card-title text-center">Wisdom</h5>
+                    <p class="card-text text-center"><em><small>Wisdom reflects how attuned you are to the world around you and represents perceptiveness and intuition.</small></em></p>
+                </div>
+            </div>
+            <div class="col-sm-3 card flex-column align-items-center" style="width: 18rem;">
+                <input id="charisma-value" readonly class="m-4 random stat-input" type="text" value="0" name="charisma">
+                <div id="charisma-button" class="random-button">
+                    <img src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669302379/icon-dice_npff3f.svg"  alt="dice icon" /></div>
+                <div class="card-body mt-3">
+                    <h5 class="card-title text-center">Charisma</h5>
+                    <p class="card-text text-center"><em><small>Charisma measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding Personality.</small></em></p>
+                </div>
+            </div>
+            <button type="submit" class="col-sm-3 btn btn-dark">Next step</button>
+
+        </form>
+        
+    </div>
+</div>
+
+<script src="/js/randomdice.js"></script>
