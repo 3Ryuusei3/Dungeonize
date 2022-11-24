@@ -74,7 +74,27 @@ const characterSchema = new mongoose.Schema(
 			flaws: {
 				type: String,
 			},
-		}
+		},
+		stats: {
+			strength: {
+				Number
+			},
+			dexterity: {
+				Number
+			},
+			constitution: {
+				Number
+			},
+			wisdom: {
+				Number
+			},
+			intelligence: {
+				Number
+			},
+			charisma: {
+				Number
+			},
+		},
 	},
 	{
 		timestamps: true,

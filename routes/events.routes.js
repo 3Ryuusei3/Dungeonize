@@ -47,8 +47,9 @@ router.post("/events/create", isLoggedIn, checkRoles("DM", "Admin"), (req, res, 
 		coordinates: [lat, lng],
 	}
 
-	Event.create({ title, description, location, date, user, place, maxParticipant, imageUrl })
-		.then(() => {
+	Event.create({ title, description, location, date, user, place, maxParticipant, imageUrl }, { new: true })
+		.then((updatedUser) => {
+			req.session.currentUser = updatedUser
 			res.redirect("/events")
 		})
 		.catch((error) => next(error))
@@ -73,14 +74,17 @@ router.get("/events/details/:events_id", isLoggedIn, (req, res, next) => {
 
 			let isJoined = false;
 
-			/* if (event.characters.length > 0) {
-				// isJoined = event.characters[0].user.toString() === req.session.currentUser._id   // map
-				let checkIfJoined = event.characters.filter(elm =>  req.session.currentUser.characters.includes(elm));
+			if (event.characters.length > 0) {
+				let checkIfJoined = event.characters.filter(elm => req.session.currentUser.characters.includes(elm._id.toString()));
 				if (checkIfJoined.length === 0) {
-					isJoined = true 
+					isJoined = false
+				} else {
+					isJoined = true
 				}
-			} */
-			/* console.log(req.session.currentUser) */
+				console.log(checkIfJoined)
+
+			}
+
 
 			res.render("event/details", {
 				characters,
@@ -94,23 +98,15 @@ router.get("/events/details/:events_id", isLoggedIn, (req, res, next) => {
 		})
 })
 
-// Delete character in event
-/* router.post("/events/characters/delete/:character_id", isLoggedIn, (req, res, next) => {
-	const { character_id } = req.params
-
-	Character.findOneAndRemove(character_id)
-		.then(() => res.redirect("/events"))
-		.catch((error) => next(error))
-}) */
-
 
 //  Join Event
 router.post("/events/details/:events_id", checkRoles("Player"), isLoggedIn, (req, res, next) => {
 	const { events_id } = req.params
 	const { characters } = req.body
 	Event
-		.findByIdAndUpdate(events_id, { $addToSet: { characters: characters } })
-		.then(() => {
+		.findByIdAndUpdate(events_id, { $addToSet: { characters: characters } }, { new: true })
+		.then((updatedUser) => {
+			req.session.currentUser = updatedUser
 			res.redirect(`/events/details/${events_id}`)
 		})
 		.catch((error) => next(error))
@@ -132,8 +128,9 @@ router.post("/events/edit/:events_id", checkRoles("DM", "Admin"), isLoggedIn, (r
 	const { events_id } = req.params
 	const { title, description, lat, lng, date, post, place, maxParticipant } = req.body
 
-	Event.findByIdAndUpdate(events_id, { title, description, lat, lng, date, post, place, maxParticipant })
-		.then(() => {
+	Event.findByIdAndUpdate(events_id, { title, description, lat, lng, date, post, place, maxParticipant }, { new: true })
+		.then((updatedUser) => {
+			req.session.currentUser = updatedUser
 			res.redirect(`/events`)
 		})
 		.catch((error) => next(error))

@@ -47,10 +47,11 @@ router.post("/user/details/edit/:user_id", isLoggedIn, uploader.single('imageFie
 	const { user_id } = req.params
 	const { email, username, password, description } = req.body
 
-	User.findByIdAndUpdate(user_id, { email, username, password, description, imageUrl: req.file.path })
+	User.findByIdAndUpdate(user_id, { email, username, password, description, imageUrl: req.file.path }, { new: true })
 		.select({ username: 1, email: 1, description: 1, password: 1, imageUrl: 1 })
-		.then(() => {
-			res.redirect(`/user/details/${user_id}`)
+		.then((updatedUser) => {
+			req.session.currentUser = updatedUser
+			res.redirect(`/user`)
 		})
 		.catch((error) => next(error))
 })

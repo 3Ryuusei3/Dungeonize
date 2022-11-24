@@ -63,9 +63,10 @@ router.post("/characters/create", isLoggedIn, uploader.single('imageField'), (re
 		.then((character) => {
 			characterId = character._id
 			console.log(character)
-			return User.findByIdAndUpdate(req.session.currentUser._id, { $push: { characters: character._id } })
+			return User.findByIdAndUpdate(req.session.currentUser._id, { $push: { characters: character._id } }, { new: true })
 		})
-		.then(() => {
+		.then((updatedUser) => {
+			req.session.currentUser = updatedUser
 			res.redirect(`/characters/create/class/${characterId}`)
 		})
 		.catch((error) => next(error))
@@ -99,8 +100,9 @@ router.post("/characters/edit/:character_id", isLoggedIn, (req, res, next) => {
 	const { character_id } = req.params
 	const { charactername } = req.body
 
-	Character.findByIdAndUpdate(character_id, { charactername })
-		.then(() => {
+	Character.findByIdAndUpdate(character_id, { charactername }, { new: true })
+		.then((updatedUser) => {
+			req.session.currentUser = updatedUser
 			res.redirect(`/characters`)
 		})
 		.catch((error) => next(error))

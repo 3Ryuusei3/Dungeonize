@@ -17,7 +17,7 @@
 | GET         | `/login`     | Login page      |      |
 | POST        | `/login`     | Login page post |      |
 | GET         | `/logout`    | Logout          |      |
-| GET         | `/dashboard` | Dashboard       |      |
+| GET         | `/index` | index       |      |
 
 ## USER
 

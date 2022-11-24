@@ -10,20 +10,20 @@ function isLoggedOut(req, res, next) {
 	if (!req.session.currentUser) {
 		next()
 	} else {
-		res.redirect(`/dashboard`)
+		res.redirect(`/`)
 	}
 }
 
 
 const checkRoles =
 	(...rolesToCheck) =>
-	(req, res, next) => {
-		if (rolesToCheck.includes(req.session.currentUser.role)) {
-			next()
-		} else {
-			res.render("index", { errorMessage: `You do not have ${rolesToCheck} priviledges` })
+		(req, res, next) => {
+			if (rolesToCheck.includes(req.session.currentUser.role)) {
+				next()
+			} else {
+				res.render("index", { errorMessage: `You do not have ${rolesToCheck} priviledges` })
+			}
 		}
-	}
 
 module.exports = {
 	isLoggedIn,
