@@ -3,17 +3,17 @@
 	<h1 class="my-4 page-title">My characters</h1>
 	<div class="row d-flex justify-content-center gap-4" style="position: relative;">
 		{{#each characters}}
-		<div class="card justify-content-between col-lg-3 col-md-4 gap-2 p-0" style="width: 18rem; overflow:hidden;">
+		<div class="card justify-content-between col-lg-3 col-md-4 gap-2 p-0" style="width: 20rem; overflow:hidden;">
 			 <div class="card-header mb-3">
     			<h2 class="card-title pt-2 text-center"><a class="details-link" href="/characters/details/{{_id}}">{{charactername}}</a></h2>
   			</div>
 			<img class="character-bg-img card-img-top" src="https://res.cloudinary.com/dhws4e2ty/image/upload/v1669307763/msnikabcjfsmjrby5avl.png" alt="Character picture" />
-			<img style="z-index: 2;" class="character-img card-img-top p-3" src="{{imageUrl}}" alt="Character picture" />
+			<img style="z-index: 2; border-radius:50%" class="character-img card-img-top p-3"src="{{imageUrl}}" alt="Character picture" />
 			<div class="px-3 pt-3" style="z-index: 2;">
 				<p class="text-end class">{{classes}}</p>
 				<p class="text-end race">{{race}}</p>
 			</div>
-			<a style="z-index: 2;" class="justify-self-end btn btn-secondary mt-3 mb-2 mx-3" href="/characters/edit/{{_id}}">Edit character</a>
+			<a style="z-index: 2;" class="justify-self-end btn btn-secondary mt-3 mb-2 mx-3" href="/characters/edit/{{_id}}">Change name</a>
 			<form style="z-index: 2;" action="/characters/delete/{{_id}}" method="POST" class="btn btn-danger mx-3">
 				<input type="submit" value="Delete character" class="btn btn-danger p-0" />
 			</form>

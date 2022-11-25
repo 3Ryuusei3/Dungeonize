@@ -83,14 +83,47 @@ h3 {
 	font-family: vanderickregular;
 	text-decoration: none;
 	color: #81130c;
+	transition: 1s ease;
 }
 
 .details-link:hover {
 	color: #b83329;
+	filter: drop-shadow(0px 0px 15px #ef7f77) 
+
 }
 
 .card {
 	background-color: rgb(253, 249, 243);
+}
+
+.btn-success {
+	background-color: #b83329;
+	border: 1px solid #b83329;
+}
+
+.btn-success:hover {
+	background-color: #e7584e;
+	border: 1px solid #e7584e;
+}
+
+.btn-secondary {
+	background-color: #c69a82;
+	border: 1px solid #c69a82;
+}
+
+.btn-secondary:hover {
+	background-color: #936952;
+	border: 1px solid #936952;
+}
+
+.btn-warning {
+	background-color: #d8c170;
+	border: 1px solid #d8c170;
+}
+
+.btn-warning:hover {
+	background-color: #b7a153;
+	border: 1px solid #b7a153;
 }
 
 
@@ -140,7 +173,7 @@ h3 {
 	font-family: vanderickregular;
 	box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
 	animation: title 3s ease-in;
-	transition: 2s ease;
+	transition: 1.5s ease;
 }
 
 .caption > h1:hover {
@@ -340,6 +373,14 @@ h3 {
 	width: 80px;
 	border: none;
 	text-align: center;
+	background-color: rgb(253, 249, 243) !important;
+}
+
+.print-btn {
+	display: block;
+	border: 2px solid #81130c;
+	color: #81130c;
+	background-color:blanchedalmond;
 }
 
 /* Events */

@@ -21,7 +21,6 @@ router.get("/characters", isLoggedIn, (req, res, next) => {
 	Promise
 		.all(promises)
 		.then(([user, characters]) => {
-			console.log({ user, characters })
 			res.render("character/list", { user, characters })
 		})
 
@@ -62,7 +61,6 @@ router.post("/characters/create", isLoggedIn, uploader.single('imageField'), (re
 	Character.create({ charactername, classes, race, imageUrl: req.file.path, user: userId })
 		.then((character) => {
 			characterId = character._id
-			console.log(character)
 			return User.findByIdAndUpdate(req.session.currentUser._id, { $push: { characters: character._id } }, { new: true })
 		})
 		.then((updatedUser) => {

@@ -1,8 +1,12 @@
-<div class="container mb-5">
+<div class="container">
+  <div class="d-flex justify-content-around align-items-center">
+    <h1 class="mt-5 page-title">Character sheet</h1>
+    <button class="print-btn me-2 mt-5 mb-3 px-3 py-1 rounded-2">Print</button>
+  </div>
+</div>
 
-  <h1 class="my-5 page-title">Character sheet</h1>
-
-  <form class="charsheet mb-5">
+<div class="container toPrint mb-5">
+  <form class="charsheet my-5">
     <header>
         <section class="charname">
           <label for="charname">Character Name</label><p class="field-header charactername mb-2">{{charactername}}</p>
@@ -40,7 +44,7 @@
                   <label for="Strengthscore">Strength</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{stats.strength}}"/>
                 </div>
                 <div class="modifier">
-                  <input name="Strengthmod" placeholder="+0" class="statmod"/>
+                  <input readonly name="Strengthmod" placeholder="+1" class="statmod"/>
                 </div>
               </li>
               <li class="mb-4">
@@ -48,7 +52,7 @@
                   <label for="Dexterityscore">Dexterity</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{stats.dexterity}}"/>
                 </div>
                 <div class="modifier">
-                  <input name="Dexteritymod" placeholder="+0" class=statmod/>
+                  <input readonly name="Dexteritymod" placeholder="+0" class=statmod/>
                 </div>
               </li>
               <li class="mb-4">
@@ -56,7 +60,7 @@
                   <label for="Constitutionscore">Constitution</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{stats.constitution}}"/>
                 </div>
                 <div class="modifier">
-                  <input name="Constitutionmod" placeholder="+0" class="statmod"/>
+                  <input readonly name="Constitutionmod" placeholder="+2" class="statmod"/>
                 </div>
               </li>
               <li class="mb-4">
@@ -64,7 +68,7 @@
                   <label for="Wisdomscore">Wisdom</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{stats.wisdom}}"/>
                 </div>
                 <div class="modifier">
-                  <input name="Wisdommod" placeholder="+0" />
+                  <input readonly name="Wisdommod" placeholder="+3" />
                 </div>
               </li>
               <li class="mb-4">
@@ -72,7 +76,7 @@
                   <label for="Intelligencescore">Intelligence</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{stats.intelligence}}"/>
                 </div>
                 <div class="modifier">
-                  <input name="Intelligencemod" placeholder="+0" class="statmod"/>
+                  <input readonly name="Intelligencemod" placeholder="+1" class="statmod"/>
                 </div>
               </li>
               <li class="mb-4">
@@ -80,7 +84,7 @@
                   <label for="Charismascore">Charisma</label><input readonly class="field-header fw-bold" name="currenthp" type="text" value="{{stats.charisma}}"/>
                 </div>
                 <div class="modifier">
-                  <input name="Charismamod" placeholder="+0" class="statmod"/>
+                  <input readonly name="Charismamod" placeholder="+1" class="statmod"/>
                 </div>
               </li>
             </ul>
@@ -143,4 +147,4 @@
   </form>
 </div>
 
-<script src="/js/charactersheet.js"></script>
+<script src="/js/printsheet.js"></script>

@@ -73,7 +73,6 @@ router.get("/events/details/:events_id", isLoggedIn, (req, res, next) => {
 				} else {
 					isJoined = true
 				}
-				console.log(checkIfJoined)
 
 			}
 
