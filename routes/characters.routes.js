@@ -68,7 +68,6 @@ router.post("/characters/create", isLoggedIn, uploader.single('imageField'), (re
 			res.redirect(`/characters/create/class/${characterId}`)
 		})
 		.catch((error) => next(error))
-
 })
 
 // Character details

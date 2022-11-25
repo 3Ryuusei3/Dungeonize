@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
 		},
 		imageUrl: {
 			type: String,
-			default: "https://i.pinimg.com/originals/e2/d4/52/e2d4524dde801da2ee190b67b34f2a8b.png",
+			default: "https://res.cloudinary.com/dhws4e2ty/image/upload/v1669291920/gfdvvkt06tfyaosisukn.jpg",
 		},
 		role: {
 			type: String,

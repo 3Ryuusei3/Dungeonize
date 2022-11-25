@@ -126,7 +126,7 @@ router.post("/events/edit/:events_id", checkRoles("DM", "Admin"), isLoggedIn, (r
 		.catch((error) => next(error))
 })
 
-// Delete Character from event
+// Kick character from event
 router.post("/events/characters/delete/:event_id/:character_id", isLoggedIn, (req, res, next) => {
 	const { character_id, event_id } = req.params
 

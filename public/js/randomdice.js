@@ -14,11 +14,9 @@ const chaVal = document.getElementById("charisma-value")
 let min = 6
 let max = 18
     
-
 function genRandomNum() {
     return Math.floor((Math.random() * (max - min) + min))
 }
-
 
 function createValue(btn, val) {
     btn.addEventListener("click", () => {
