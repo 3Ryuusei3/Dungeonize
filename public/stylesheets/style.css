@@ -162,14 +162,8 @@ h3 {
 	margin-inline: auto;
 }
 
-.caption > h1 {
-	font-size: 90px;
-	color: #fff;
-	white-space: nowrap;
-	z-index: 1;
-	padding: 20px 40px;
-	background-color: #231505;
-	mix-blend-mode: multiply;
+.caption > img {
+	width: 50%;
 	font-family: vanderickregular;
 	box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
 	animation: title 3s ease-in;
@@ -228,7 +222,9 @@ h3 {
 }
 
 .feature-icon {
+	object-fit: cover;
 	width: 80%; 
+	height: 80%;
 	margin-inline: auto;
 	transition: 0.5s;
 }
@@ -255,25 +251,20 @@ h3 {
 	position: relative;
 }
 
-.quote p::after {
-	position: absolute;
-	bottom: -30;
-	content: url("https://static.thenounproject.com/png/218748-200.png");
-	opacity: 0.12;
+.quote p {
+	padding-inline: 20px;
 }
 
 @media (max-width: 800px) {
-	.caption > h1 {
-		font-size: 60px;
-		padding: 15px 30px;
+	.caption > img {
+		width: 60%;
 		box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
 	}
 }
 
 @media (max-width: 500px) {
-	.caption > h1 {
-		font-size: 45px;
-		padding: 10px 20px;
+	.caption > img {
+		width: 70%;
 		box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.6);
 	}
 }
