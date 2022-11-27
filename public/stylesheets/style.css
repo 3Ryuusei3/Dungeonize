@@ -222,9 +222,7 @@ h3 {
 }
 
 .feature-icon {
-	object-fit: cover;
 	width: 80%; 
-	height: 80%;
 	margin-inline: auto;
 	transition: 0.5s;
 }
